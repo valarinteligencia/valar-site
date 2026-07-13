@@ -26,7 +26,7 @@
   <meta name="geo.region" content="BR">
   <title>Contato direto — VALAR</title>
   <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/inter-500-latin.woff2">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260709">
   <noscript><style>section { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
 
@@ -63,7 +63,6 @@
 
         <nav class="nav__links" aria-label="Navegação principal">
           <a href="index.html#modulos">Módulos</a>
-          <a href="manifesto.html">Manifesto</a>
           <a href="diagnostico.html" aria-current="page">Contato</a>
         </nav>
 
@@ -84,7 +83,6 @@
 
       <nav id="mobile-menu" class="nav__mobile" aria-label="Navegação mobile" hidden>
         <a href="index.html#modulos">Módulos</a>
-        <a href="manifesto.html">Manifesto</a>
         <a href="diagnostico.html">Contato</a>
         <a href="diagnostico.html" class="nav__cta">Diagnóstico →</a>
       </nav>
@@ -119,14 +117,12 @@
             </a>
           </div>
 
-          <!-- Contato manual — Formspree (canal direto, não diagnóstico automático) -->
-          <form action="https://formspree.io/f/YOUR_FORM_ID"
-                method="POST"
-                class="diag-form"
+          <!-- Contato manual (canal direto, não diagnóstico automático).
+               Envio via mailto: para contato@valar.tec.br — sem backend.
+               Upgrade futuro: Formspree ID real OU endpoint de contato na API
+               (ver 10_ESTRATEGIA/Rodada_0/04-roadmap.md, iniciativa I1). -->
+          <form class="diag-form"
                 id="diagnostico-form-el">
-
-            <input type="hidden" name="_next" value="https://valar.tec.br/obrigado.html">
-            <input type="hidden" name="_subject" value="Contato direto via diagnostico.html">
 
             <div class="form-row form-row--2">
               <div class="form-group">
@@ -176,6 +172,26 @@
             </div>
 
           </form>
+
+          <script>
+            (function () {
+              var form = document.getElementById('diagnostico-form-el');
+              if (!form) return;
+              form.addEventListener('submit', function (ev) {
+                ev.preventDefault();
+                if (!form.reportValidity()) return;
+                var v = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+                var assunto = 'Contato direto via site — ' + v('empresa');
+                var corpo = 'Nome: ' + v('nome') + '\nEmpresa: ' + v('empresa') +
+                            '\nE-mail: ' + v('email') + '\n\n' + v('mensagem');
+                if (window.plausible) window.plausible('contato_direto_enviado');
+                window.location.href = 'mailto:contato@valar.tec.br' +
+                  '?subject=' + encodeURIComponent(assunto) +
+                  '&body=' + encodeURIComponent(corpo);
+                setTimeout(function () { window.location.href = 'obrigado.html'; }, 800);
+              });
+            })();
+          </script>
         </div>
       </div>
     </section>

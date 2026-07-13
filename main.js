@@ -1,5 +1,37 @@
 /* VALAR — main.js · Scripts compartilhados */
 
+// ── Analytics (Plausible) — helper guardado + fila de eventos ──────────────
+// Instrumentação NUNCA lança e NUNCA bloqueia o fluxo. Se o Plausible não
+// carregou (localhost, bloqueador, offline), vira no-op silencioso.
+// Regra LGPD: nenhum evento carrega PII (sem CNPJ, nome ou e-mail).
+(function () {
+  // Stub de fila: permite chamar plausible() antes do script.js carregar. Quando
+  // o script.js real carrega, ele substitui window.plausible e drena a fila (.q).
+  window.plausible = window.plausible || function () {
+    (window.plausible.q = window.plausible.q || []).push(arguments);
+  };
+  // Helper único do site. `props` é opcional (objeto simples, sem PII).
+  window.vTrack = function (evento, props) {
+    try {
+      if (typeof window.plausible === 'function') {
+        window.plausible(evento, props ? { props: props } : undefined);
+      }
+    } catch (_) { /* telemetria nunca quebra o fluxo */ }
+  };
+}());
+
+// ── Funil (topo): clique em CTA que leva ao Diagnóstico (qualquer página) ──
+(function () {
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (/(?:diagnostico|snapshot)\.html/.test(href) || href === '#snap-form') {
+      window.vTrack('CTA: Diagnóstico', { origem: location.pathname });
+    }
+  }, true);
+}());
+
 // Fade-in de seções com choreography progressiva
 (function () {
   if (!('IntersectionObserver' in window)) {

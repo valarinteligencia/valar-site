@@ -20,7 +20,7 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/inter-400-latin.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/inter-500-latin.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/jetbrains-mono-400-latin.woff2">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260709">
 </head>
 
 <body>
@@ -52,7 +52,6 @@
         </a>
         <nav class="nav__links" aria-label="Navegação principal">
           <a href="index.html#modulos">Produto</a>
-          <a href="manifesto.html">Manifesto</a>
           <a href="blog/">Blog</a>
           <a href="diagnostico.html">Contato</a>
         </nav>
@@ -63,7 +62,6 @@
       </div>
       <nav id="mobile-menu" class="nav__mobile" aria-label="Navegação mobile" hidden>
         <a href="index.html#modulos">Produto</a>
-        <a href="manifesto.html">Manifesto</a>
         <a href="blog/">Blog</a>
         <a href="diagnostico.html">Contato</a>
         <a href="#snap-form" class="nav__cta">Diagnóstico →</a>
@@ -442,6 +440,15 @@
     return p.join(' ');
   }
 
+  // ── Funil: faixa de porte (não-identificante) para o evento Iniciado ──────
+  function faixaFuncionarios(q) {
+    q = parseInt(q, 10) || 0;
+    if (q <= 10) return '1-10';
+    if (q <= 50) return '11-50';
+    if (q <= 200) return '51-200';
+    return '200+';
+  }
+
   // ── CNPJ helpers ─────────────────────────────────────────────────────────
   function maskCNPJ(v) {
     return v.replace(/\D/g, '')
@@ -569,6 +576,11 @@
 
       const data = await res.json();
       const diagnosticoId = data.diagnostico_id;
+
+      // Funil: diagnóstico iniciado (só faixa de porte — sem PII).
+      window.vTrack && window.vTrack('Diagnóstico: Iniciado', {
+        porte: faixaFuncionarios(payload.qtd_funcionarios),
+      });
 
       // Ocultar formulário, exibir grafo
       document.getElementById('snap-form').style.display = 'none';
@@ -901,6 +913,8 @@
         // Verificar se fora do ICP
         if (data.status === 'fora_icp') {
           clearInterval(interval);
+          // Funil: saída por fora do ICP.
+          window.vTrack && window.vTrack('Diagnóstico: Fora do ICP');
           document.getElementById('snap-grafo').classList.remove('visible');
           const icpEl = document.getElementById('snap-fora-icp');
           icpEl.style.display = 'block';
@@ -914,6 +928,8 @@
         // Verificar erro
         if (data.status === 'error') {
           clearInterval(interval);
+          // Funil: saída por erro de processamento.
+          window.vTrack && window.vTrack('Diagnóstico: Erro');
           document.getElementById('snap-err-id').textContent =
             'ERR · ' + diagnosticoId.slice(0, 8).toUpperCase();
           const erroEl = document.getElementById('snap-erro');
@@ -954,6 +970,8 @@
   function iniciarNaurChat(diagnosticoId) {
     _chatDiagnosticoId = diagnosticoId;
     _chatAtivo = true;
+    // Funil: entrevista Naur iniciada.
+    window.vTrack && window.vTrack('Diagnóstico: Entrevista');
     const chatEl = document.getElementById('snap-chat');
     chatEl.classList.add('visible');
     // M4 — fade-in após next paint.
@@ -1130,6 +1148,8 @@
 
   function encerrarChat() {
     setInputDisabled(true);
+    // Funil: diagnóstico concluído (evento-meta / conversão).
+    window.vTrack && window.vTrack('Diagnóstico: Concluído');
     document.getElementById('chat-input-wrap').style.display = 'none';
     // M1 — preenche ID de protocolo no snap-stamp de conclusão.
     if (_chatDiagnosticoId) {

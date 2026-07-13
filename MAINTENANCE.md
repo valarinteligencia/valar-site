@@ -1,3 +1,12 @@
+---
+title: "Manutenção contínua do site institucional — valar.tec.br"
+owner: "Felipe Gonçalves Mattar Quintão"
+status: ativo
+version: "1.0"
+updated: "2026-07-09"
+folder: "11_CANAIS_DIGITAIS/web_institucional"
+---
+
 # MAINTENANCE.md — Operação contínua do site VALAR
 
 Checklist de rotinas para manter o site saudável após o lançamento.

@@ -263,15 +263,15 @@ section.is-visible {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-family: var(--font-sans);
+  font-size: 14px;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--cobre);
-  border: 1px solid rgba(184, 115, 51, 0.55);
-  padding: 8px 16px;
-  background-color: rgba(184, 115, 51, 0.04);
+  text-transform: none;
+  letter-spacing: 0.01em;
+  color: var(--cobre-luz);
+  border: 1px solid rgba(184, 115, 51, 0.85);
+  padding: 9px 17px;
+  background-color: rgba(184, 115, 51, 0.16);
   transition:
     background-color 280ms var(--ease-out-soft),
     color 280ms var(--ease-out-soft),
@@ -356,8 +356,10 @@ section.is-visible {
   align-self: flex-start;
 }
 @media (max-width: 720px) {
-  .nav__links, .nav__desktop-cta { display: none; }
+  .nav__links { display: none; }
   .nav__hamburger { display: flex; }
+  /* CTA persistente no mobile (corrige A6: o CTA sumia no mobile, só sobrava no hambúrguer) */
+  .nav__desktop-cta { font-size: 13px; padding: 8px 13px; letter-spacing: 0.01em; }
 }
 
 /* --- BOTÕES (gravidade Palantir + transição deliberada) --- */
@@ -369,11 +371,11 @@ section.is-visible {
   min-height: 46px;
   background-color: var(--cobre);
   color: var(--obsidiana);
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-family: var(--font-sans);
+  font-size: 15px;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  text-transform: none;
+  letter-spacing: 0.01em;
   padding: 13px 26px;
   border: 1px solid var(--cobre);
   box-shadow: var(--shadow-button);
@@ -413,9 +415,9 @@ section.is-visible {
 
 .btn-primary--lg {
   min-height: 56px;
-  font-size: 12px;
+  font-size: 16px;
   padding: 17px 32px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.01em;
 }
 
 .btn-secondary {
@@ -426,11 +428,11 @@ section.is-visible {
   min-height: 46px;
   background-color: transparent;
   color: var(--marfim);
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-family: var(--font-sans);
+  font-size: 15px;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  text-transform: none;
+  letter-spacing: 0.01em;
   padding: 13px 24px;
   border: 1px solid var(--borda);
   transition:
@@ -516,7 +518,7 @@ section.is-visible {
   font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
 }
 .hero__title em {
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   color: var(--cobre-luz);
   font-variation-settings: 'opsz' 144, 'SOFT' 50;
@@ -1085,7 +1087,7 @@ section.is-visible {
   font-variation-settings: 'opsz' 144, 'SOFT' 0;
 }
 .diag__title em {
-  font-style: italic;
+  font-style: normal;
   color: var(--cobre-luz);
   font-weight: 400;
   font-variation-settings: 'opsz' 144, 'SOFT' 60;
@@ -1266,7 +1268,7 @@ body.nav-open { overflow: hidden; }
   font-variation-settings: 'opsz' 144, 'SOFT' 0;
 }
 .page-hero__title em {
-  font-style: italic;
+  font-style: normal;
   color: var(--cobre-luz);
   font-weight: 400;
   font-variation-settings: 'opsz' 144, 'SOFT' 60;
@@ -1474,6 +1476,101 @@ body.nav-open { overflow: hidden; }
 }
 .placeholder-block__cta {
   margin-top: 32px;
+}
+
+/* --- CASO APLICADO (casos.html) — componente reutilizável ---------------- */
+.caso {
+  max-width: 760px;
+  padding: 88px 0 0;
+  border-top: 1px solid var(--borda);
+}
+.caso__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--cobre);
+  margin-bottom: 22px;
+}
+.caso__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 400;
+  color: var(--marfim);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  font-variation-settings: 'opsz' 144, 'SOFT' 0;
+}
+.caso__lead {
+  font-size: 17px;
+  color: var(--cinza-medio);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+/* Números — reaproveita .metric/.metric__value/__label do hero */
+.caso__metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin: 44px 0;
+  padding: 30px 0;
+  border-top: 1px solid var(--borda-suave);
+  border-bottom: 1px solid var(--borda-suave);
+}
+.caso__section { margin-top: 40px; }
+.caso__h {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--cinza-escuro);
+  margin-bottom: 16px;
+}
+.caso__body {
+  font-size: 16px;
+  color: var(--cinza-medio);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+.caso__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.caso__list li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 15px;
+  color: var(--cinza-medio);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+.caso__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 5px;
+  height: 5px;
+  background-color: var(--cobre);
+  transform: rotate(45deg);
+}
+.caso__note {
+  margin-top: 44px;
+  padding: 18px 22px;
+  border-left: 2px solid var(--cobre);
+  background: rgba(184, 115, 51, 0.04);
+  font-size: 14px;
+  color: var(--cinza-medio);
+  line-height: 1.7;
+}
+.caso__cta { margin-top: 48px; }
+@media (max-width: 600px) {
+  .caso { padding-top: 64px; }
+  .caso__metrics { grid-template-columns: 1fr; gap: 20px; }
 }
 
 /* --- PÃGINA DE ERRO / OBRIGADO --- */

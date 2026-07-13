@@ -1,3 +1,12 @@
+---
+title: "Deploy do site institucional — valar.tec.br"
+owner: "Felipe Gonçalves Mattar Quintão"
+status: ativo
+version: "1.0"
+updated: "2026-07-09"
+folder: "11_CANAIS_DIGITAIS/web_institucional"
+---
+
 # DEPLOY.md — VALAR Site
 
 Referência operacional para deploy, DNS, HTTPS e manutenção do site valar.tec.br.

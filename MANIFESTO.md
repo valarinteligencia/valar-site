@@ -1,3 +1,12 @@
+---
+title: "Manifesto VALAR (fonte do manifesto.html)"
+owner: "Felipe Gonçalves Mattar Quintão"
+status: ativo
+version: "1.0"
+updated: "2026-07-09"
+folder: "11_CANAIS_DIGITAIS/web_institucional"
+---
+
 # Manifesto
 
 A operação tem seis faces. Falta o eixo que as ordena.

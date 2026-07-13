@@ -27,7 +27,7 @@
   <title>Casos aplicados — VALAR</title>
   <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/inter-400-latin.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/inter-500-latin.woff2">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260709">
   <noscript><style>section { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
 
@@ -64,7 +64,6 @@
 
         <nav class="nav__links" aria-label="Navegação principal">
           <a href="index.html#modulos">Módulos</a>
-          <a href="manifesto.html">Manifesto</a>
           <a href="diagnostico.html">Contato</a>
         </nav>
 
@@ -84,7 +83,6 @@
 
       <nav id="mobile-menu" class="nav__mobile" aria-label="Navegação mobile" hidden>
         <a href="index.html#modulos">Módulos</a>
-        <a href="manifesto.html">Manifesto</a>
         <a href="diagnostico.html">Contato</a>
         <a href="diagnostico.html" class="nav__cta">Diagnóstico →</a>
       </nav>
@@ -98,30 +96,89 @@
         <p class="page-hero__eyebrow">casos aplicados</p>
         <h1 class="page-hero__title">Dados antes de promessas.</h1>
         <p class="page-hero__sub">
-          Casos exigem cliente com operação documentada e métricas verificáveis.
-          Publicamos quando temos número real, não antes.
+          O primeiro caso é uma operação real, medida e anonimizada. Número verificado
+          onde há medição; estimativa onde ainda falta baseline — e dizemos qual é qual.
         </p>
       </div>
     </section>
 
     <section id="casos-content">
       <div class="container">
-        <div class="placeholder-block">
-          <p class="placeholder-block__label">em construção</p>
-          <p class="placeholder-block__body">
-            O primeiro caso será publicado quando tivermos 90 dias de operação ativa com
-            um cliente, dados de uso documentados e autorização para divulgar — com nome
-            quando autorizado, anonimizado quando necessário, sempre com método e número.
+        <article class="caso">
+
+          <p class="caso__eyebrow">caso 01 · engenharia de manutenção predial</p>
+          <h2 class="caso__title">232 pontos, 2 estados: uma operação que virou sistema</h2>
+          <p class="caso__lead">
+            Uma operadora de engenharia mantém as instalações físicas de um grande banco
+            público nacional — obra civil, elétrica, hidráulica, refrigeração e prevenção
+            de incêndio. A operação funcionava, mas morava em planilhas, e-mail e grupos de
+            WhatsApp, dependente de poucas pessoas-chave. A VALAR instalou a
+            <strong>ARDA</strong> sobre ela.
           </p>
-          <p class="placeholder-block__body">
-            Estrutura de cada caso: contexto da operação, tensão que originou o projeto,
-            módulo configurado, métricas antes e depois, tempo de setup realizado.
-            Sem narrativa de "transformação". Só dado.
+
+          <div class="caso__metrics">
+            <div class="metric">
+              <div class="metric__value">232</div>
+              <div class="metric__label">Dependências atendidas</div>
+            </div>
+            <div class="metric">
+              <div class="metric__value">2</div>
+              <div class="metric__label">Estados (RS · SC)</div>
+            </div>
+            <div class="metric">
+              <div class="metric__value">1.820</div>
+              <div class="metric__label">Relatórios técnicos emitidos</div>
+            </div>
+            <div class="metric">
+              <div class="metric__value">5</div>
+              <div class="metric__label">Módulos em produção</div>
+            </div>
+          </div>
+
+          <div class="caso__section">
+            <p class="caso__h">a tensão</p>
+            <p class="caso__body">
+              Sem medição confiável, sem trilha auditável, sem como escalar. Sincronizar o
+              portal do banco, não perder a evidência fotográfica de campo, emitir relatório
+              técnico e fechar a medição mensal consumiam horas manuais e geravam retrabalho —
+              e o conhecimento da operação vivia na cabeça de poucos.
+            </p>
+          </div>
+
+          <div class="caso__section">
+            <p class="caso__h">o que instalamos</p>
+            <ul class="caso__list">
+              <li>Integração com o portal do banco — captura e devolução de ordens de serviço.</li>
+              <li>Geração assistida de relatórios técnicos — padronização e velocidade (1.820 emitidos).</li>
+              <li>Arquivamento inteligente de evidência de campo — fotos e áudios vinculados à ordem certa.</li>
+              <li>Pipeline diário da operação — consolidação e resumo automáticos do dia.</li>
+              <li>Camada de conhecimento consultável — a operação virou base estruturada e pesquisável.</li>
+            </ul>
+          </div>
+
+          <div class="caso__section">
+            <p class="caso__h">o resultado</p>
+            <p class="caso__body">
+              A operação saiu de dispersa e manual para medida, automatizada e consultável:
+              uma malha de 232 pontos em 2 estados administrada como um sistema único, com
+              evidência preservada e o fechamento mensal amarrado da ordem de serviço ao
+              faturamento. O conhecimento deixou de sair com quem sai da empresa.
+            </p>
+          </div>
+
+          <p class="caso__note">
+            <strong>Transparência.</strong> Os números de escala acima são fato medido
+            (mar/2025 → jun/2026). Ganhos de produtividade — horas recuperadas, redução de
+            retrabalho — estão sob instrumentação de baseline antes/depois e serão publicados
+            como números auditados. Não antes. Cliente e banco não são nomeados por acordo de
+            confidencialidade.
           </p>
-          <div class="placeholder-block__cta">
+
+          <div class="caso__cta">
             <a href="diagnostico.html" class="btn-primary">Solicitar diagnóstico →</a>
           </div>
-        </div>
+
+        </article>
       </div>
     </section>
 
