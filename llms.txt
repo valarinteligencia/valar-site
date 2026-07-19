@@ -5,7 +5,8 @@
 > serviços, produtos e código já disponíveis no mercado — para automatizar processos, melhorar
 > a qualidade da operação e aumentar escala e eficiência de atendimento.
 
-Empresa brasileira, sede no Brasil, atendimento em português. Contato: contato@valar.tec.br
+Empresa brasileira, sede no Brasil, atendimento em português.
+Contato: contato@valar.tec.br · WhatsApp (51) 93618-4094 · Instagram @valarinteligencia
 
 ## Posição
 
@@ -47,7 +48,8 @@ publicados porque ainda não têm linha de base auditada.
 - [Sobre](https://valar.tec.br/sobre): manifesto — o que a VALAR é e o que não é.
 - [Casos](https://valar.tec.br/casos): o caso acima, com a régua de medição à mostra.
 - [Blog](https://valar.tec.br/blog): análises sobre automação, integração e IA na operação.
-- [Contato](https://valar.tec.br/contato): contato@valar.tec.br
+- [Contato](https://valar.tec.br/contato): formulário guiado, contato@valar.tec.br,
+  WhatsApp https://wa.me/5551936184094, Instagram https://www.instagram.com/valarinteligencia
 
 ## Blog — temas
 
