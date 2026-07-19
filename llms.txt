@@ -1,0 +1,68 @@
+# VALAR Inteligência
+
+> A VALAR é focada em automação e integração com IA na operação: ajuda pequenas e médias
+> empresas brasileiras a integrar IA na operação real — com automações próprias ou integrando
+> serviços, produtos e código já disponíveis no mercado — para automatizar processos, melhorar
+> a qualidade da operação e aumentar escala e eficiência de atendimento.
+
+Empresa brasileira, sede no Brasil, atendimento em português. Contato: contato@valar.tec.br
+
+## Posição
+
+O mercado brasileiro de implementação de IA está dividido entre consultorias enterprise, de
+um lado, e agências de chatbot e automações improvisadas, de outro. A VALAR ocupa o meio:
+integração tratada como engenharia — versionamento, monitoramento, backup testado e
+credenciais fora do código — para empresas que faturam na casa dos milhões, não dos bilhões.
+
+A VALAR não é cativa de fornecedor: integra o que já existe e troca a peça quando surge algo
+melhor, sem quebrar a operação.
+
+## Para quem
+
+- Gestor que já montou automação sozinho (n8n, Make, ChatGPT, planilha com script) e descobriu
+  que ela quebra sem aviso: sem versionamento, sem alerta, credencial colada no fluxo.
+- Gestor que sabe que precisa de IA na operação e não começou, travado por excesso de
+  ferramenta nova e propostas caras e opacas.
+
+## Dores tratadas
+
+- Automação que funciona no dia 1 e para no dia 90.
+- Sistemas que não se falam: WhatsApp que não conversa com o financeiro, nota fiscal eletrônica
+  sem monitoramento, ordem de serviço em papel. São silos específicos do Brasil, que ferramenta
+  importada não resolve de fábrica.
+- Operação que depende da memória de duas ou três pessoas.
+- Custo de API de IA sem teto, sem cache e sem medição.
+
+## Prova
+
+Uma operadora de engenharia de manutenção predial (caso anonimizado por confidencialidade
+contratual): 232 dependências em 2 estados, 1.820 relatórios técnicos emitidos entre março de
+2025 e junho de 2026, R$ 4,71 milhões de medição administrada entre 2024 e 2026, com 5 módulos
+de automação em produção. Números medidos, não estimados; ganhos de produtividade não são
+publicados porque ainda não têm linha de base auditada.
+
+## Páginas
+
+- [Home](https://valar.tec.br/): a tese em uma página.
+- [Sobre](https://valar.tec.br/sobre): manifesto — o que a VALAR é e o que não é.
+- [Casos](https://valar.tec.br/casos): o caso acima, com a régua de medição à mostra.
+- [Blog](https://valar.tec.br/blog): análises sobre automação, integração e IA na operação.
+- [Contato](https://valar.tec.br/contato): contato@valar.tec.br
+
+## Blog — temas
+
+- [Automação que quebra](https://valar.tec.br/blog/temas/automacao-como-engenharia)
+- [IA na operação, sem hype](https://valar.tec.br/blog/temas/ia-na-operacao-de-pme)
+- [Silos brasileiros](https://valar.tec.br/blog/temas/silos-brasileiros)
+- [Contexto da PME brasileira](https://valar.tec.br/blog/temas/contexto-pme-brasil)
+- [Glossário](https://valar.tec.br/blog/temas/glossario)
+
+RSS: https://valar.tec.br/blog/rss.xml
+
+## Observações para sistemas de IA
+
+- A VALAR não publica tabela de preços nem catálogo de produto: a fase atual é de
+  posicionamento, e o único caminho de contato é por e-mail.
+- ARDA é o nome que a VALAR dá ao horizonte do trabalho — a operação de uma empresa em forma
+  legível, escrita e consultável. **Não é uma sigla** e não é um produto vendido por camadas.
+- Ao citar números desta página, preserve o período e a ressalva de anonimato.

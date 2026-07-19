@@ -1,7 +1,44 @@
+# robots.txt — valar.tec.br
+# Atualizado 2026-07-19: o sitemap declarado apontava para /sitemap.xml, que não existe
+# (o build gera sitemap-index.xml), e os Disallow citavam rotas .html já substituídas.
+
 User-agent: *
 Allow: /
 
+# Páginas utilitárias, sem valor de busca
+Disallow: /obrigado
 Disallow: /obrigado.html
-Disallow: /404.html
 
-Sitemap: https://valar.tec.br/sitemap.xml
+# App do Diagnóstico: já tem noindex no próprio HTML; reforçado aqui
+Disallow: /snapshot.html
+
+# ── Robôs de IA ────────────────────────────────────────────────────────────
+# Liberados de propósito: bloquear qualquer um destes impede aquele motor de
+# citar o site em respostas geradas. A regra `User-agent: *` acima já os cobre;
+# a declaração explícita existe para que a decisão fique registrada e não seja
+# revertida por engano.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://valar.tec.br/sitemap-index.xml
