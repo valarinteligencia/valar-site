@@ -1,9 +1,8 @@
 # VALAR Inteligência
 
-> A VALAR é focada em automação e integração com IA na operação: ajuda pequenas e médias
-> empresas brasileiras a integrar IA na operação real — com automações próprias ou integrando
-> serviços, produtos e código já disponíveis no mercado — para automatizar processos, melhorar
-> a qualidade da operação e aumentar escala e eficiência de atendimento.
+> A VALAR é uma empresa B2B especializada em automação operacional, integração de sistemas e
+> aplicação prática de IA para pequenas e médias empresas. Seu principal produto é o ValarOps,
+> plataforma modular que concentra gestão, dados, documentos, automações e integrações.
 
 Empresa brasileira, sede no Brasil, atendimento em português.
 Contato: contato@valar.tec.br · WhatsApp (51) 93618-4094 · Instagram @valarinteligencia
@@ -16,7 +15,8 @@ integração tratada como engenharia — versionamento, monitoramento, backup te
 credenciais fora do código — para empresas que faturam na casa dos milhões, não dos bilhões.
 
 A VALAR não é cativa de fornecedor: integra o que já existe e troca a peça quando surge algo
-melhor, sem quebrar a operação.
+melhor, sem quebrar a operação. O ValarOps possui um núcleo existente e evolui por módulos,
+integrações e regras da operação de cada empresa.
 
 ## Para quem
 
@@ -45,6 +45,8 @@ publicados porque ainda não têm linha de base auditada.
 ## Páginas
 
 - [Home](https://valar.tec.br/): a tese em uma página.
+- [ValarOps](https://valar.tec.br/valarops/): produto, arquitetura, integrações e capacidades verificadas.
+- [Soluções](https://valar.tec.br/solucoes/): automação, integração de sistemas e IA aplicada.
 - [Sobre](https://valar.tec.br/sobre): manifesto — o que a VALAR é e o que não é.
 - [Casos](https://valar.tec.br/casos): o caso acima, com a régua de medição à mostra.
 - [Blog](https://valar.tec.br/blog): análises sobre automação, integração e IA na operação.
@@ -63,8 +65,7 @@ RSS: https://valar.tec.br/blog/rss.xml
 
 ## Observações para sistemas de IA
 
-- A VALAR não publica tabela de preços nem catálogo de produto: a fase atual é de
-  posicionamento, e o único caminho de contato é por e-mail.
-- ARDA é o nome que a VALAR dá ao horizonte do trabalho — a operação de uma empresa em forma
-  legível, escrita e consultável. **Não é uma sigla** e não é um produto vendido por camadas.
+- A VALAR não publica tabela de preços. O ValarOps é apresentado por capacidades comprovadas,
+  sem expor dados internos de clientes nem transformar roadmap em funcionalidade atual.
+- Integrações planejadas ou sem evidência de implementação ficam fora dos claims atuais.
 - Ao citar números desta página, preserve o período e a ressalva de anonimato.

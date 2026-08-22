@@ -20,16 +20,51 @@
   };
 }());
 
-// ── Funil (topo): clique em CTA que leva ao Diagnóstico (qualquer página) ──
+// ── Atribuição e eventos do funil ─────────────────────────────────────────
+// UTMs ficam apenas na sessão do navegador e alimentam eventos e o lead enviado.
+// Não há PII nesta camada.
 (function () {
+  var chaves = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+  var busca = new URLSearchParams(location.search);
+  var atribuicao = {};
+  function guardar(chave, valor) {
+    try { sessionStorage.setItem(chave, valor); } catch (_) { /* storage pode estar bloqueado */ }
+  }
+  function ler(chave) {
+    try { return sessionStorage.getItem(chave); } catch (_) { return null; }
+  }
+  chaves.forEach(function (chave) {
+    var valor = busca.get(chave);
+    if (valor) guardar('valar_' + chave, valor.slice(0, 120));
+    var salvo = ler('valar_' + chave);
+    if (salvo) atribuicao[chave] = salvo;
+  });
+
   document.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     if (!a) return;
     var href = a.getAttribute('href') || '';
-    if (/(?:diagnostico|snapshot)\.html/.test(href) || href === '#snap-form') {
-      window.vTrack('CTA: Diagnóstico', { origem: location.pathname });
-    }
+    var evento = a.dataset.track;
+    if (!evento && href.indexOf('/valarops') === 0) evento = 'Acesso: ValarOps';
+    if (!evento && href.indexOf('/casos') === 0) evento = 'Acesso: Caso';
+    if (!evento && href.indexOf('wa.me/') !== -1) evento = 'CTA: WhatsApp';
+    if (!evento) return;
+    window.vTrack(evento, Object.assign({ origem: location.pathname }, atribuicao));
   }, true);
+}());
+
+// Mensagem contextual de WhatsApp sem espalhar URLs diferentes pelas páginas.
+(function () {
+  var mensagens = {
+    contato: 'Olá, conheci a VALAR pelo site e gostaria de conversar sobre a operação da minha empresa.',
+    footer: 'Olá, conheci a VALAR pelo site e gostaria de conversar sobre minha operação.',
+    valarops: 'Olá, conheci o ValarOps pelo site e gostaria de conversar sobre a operação da minha empresa.'
+  };
+  document.querySelectorAll('a[data-whatsapp-context]').forEach(function (a) {
+    var contexto = a.getAttribute('data-whatsapp-context') || 'footer';
+    var mensagem = mensagens[contexto] || mensagens.footer;
+    a.href = 'https://wa.me/5551936184094?text=' + encodeURIComponent(mensagem);
+  });
 }());
 
 // Fade-in de seções com choreography progressiva
@@ -56,28 +91,6 @@
       s.classList.add('is-visible');
     }
   });
-}());
-
-// Nav: estado scrolled (gravidade aumenta após sair do hero)
-(function () {
-  var nav = document.querySelector('.nav');
-  if (!nav) return;
-  var ticking = false;
-  function update() {
-    if (window.scrollY > 32) {
-      nav.classList.add('is-scrolled');
-    } else {
-      nav.classList.remove('is-scrolled');
-    }
-    ticking = false;
-  }
-  window.addEventListener('scroll', function () {
-    if (!ticking) {
-      window.requestAnimationFrame(update);
-      ticking = true;
-    }
-  }, { passive: true });
-  update();
 }());
 
 // Menu mobile hambúrguer (com ESC, scroll-lock e backdrop)
