@@ -15,9 +15,15 @@
   function reduzido() { return forcarReduzido || !!consultaMovimento.matches; }
   function $(s, c) { return (c || doc).querySelector(s); }
   function $$(s, c) { return Array.prototype.slice.call((c || doc).querySelectorAll(s)); }
-  function brl(v) { return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
-  function semMoeda(v) { return v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
-  function decimal(v, casas) { return v.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas }); }
+  // Números no formato brasileiro sem Intl: a primeira formatação com Intl carrega os
+  // dados de idioma e custa caro no celular. Saída idêntica à do Intl pt-BR (R$ com
+  // espaço fixo, ponto no milhar, vírgula no decimal).
+  function decimal(v, casas) {
+    var s = Math.abs(v).toFixed(casas).split('.');
+    return (v < 0 ? '-' : '') + s[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + (casas ? ',' + s[1] : '');
+  }
+  function brl(v) { return (v < 0 ? '-' : '') + 'R$ ' + decimal(Math.abs(v), 2); }
+  function semMoeda(v) { return decimal(v, 2); }
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function reiniciarClasse(el, classe) { if (!el) return; el.classList.remove(classe); void el.offsetWidth; el.classList.add(classe); }
   function trocarConteudo(el, preencher) {
@@ -26,6 +32,31 @@
     el.classList.add('troca');
     window.setTimeout(function () { preencher(); el.classList.remove('troca'); }, 170);
   }
+
+  /* As seções abaixo da abertura usam content-visibility: auto (CSS). Enquanto
+     uma seção está pulada, o navegador não calcula a interseção dos filhos. Por
+     garantia, quando ela volta a ser desenhada, os observadores criados aqui revisam
+     os alvos dela (o Chrome já refaz a conta sozinho; a revisão cobre quem não
+     refaz). Sem o evento de troca de estado, a montagem por seção é desligada. */
+  var cvComEvento = 'ContentVisibilityAutoStateChangeEvent' in window;
+  if (!cvComEvento) doc.documentElement.classList.add('sem-cv');
+  var observadores = [];
+  function criarObservador(fn, opcoes) {
+    var io = new IntersectionObserver(fn, opcoes);
+    var alvos = [];
+    var observe = io.observe.bind(io), unobserve = io.unobserve.bind(io), disconnect = io.disconnect.bind(io);
+    io.observe = function (a) { if (alvos.indexOf(a) < 0) alvos.push(a); observe(a); };
+    io.unobserve = function (a) { var i = alvos.indexOf(a); if (i >= 0) alvos.splice(i, 1); unobserve(a); };
+    io.disconnect = function () { alvos.length = 0; disconnect(); };
+    io.revisar = function (secao) { alvos.forEach(function (a) { if (secao.contains(a)) { unobserve(a); observe(a); } }); };
+    observadores.push(io);
+    return io;
+  }
+  if (cvComEvento) doc.addEventListener('contentvisibilityautostatechange', function (e) {
+    if (e.skipped) return;
+    var secao = e.target;
+    window.requestAnimationFrame(function () { observadores.forEach(function (io) { io.revisar(secao); }); });
+  }, true);
 
   /* Ponto de integração de métricas: dispara um evento no documento.
      Não coleta dado pessoal e não envia nada. Ver GUIA_PUBLICACAO.md. */
@@ -113,7 +144,8 @@
       pendente = false;
     }
     window.addEventListener('scroll', function () { if (!pendente) { pendente = true; window.requestAnimationFrame(atualizar); } }, { passive: true });
-    atualizar();
+    // no quadro seguinte: ler scrollHeight aqui forçaria o layout da página inteira
+    window.requestAnimationFrame(atualizar);
     if (!('IntersectionObserver' in window)) return;
     var links = $$('.topo__nav a');
     var porId = {};
@@ -134,7 +166,7 @@
   function iniciarRevela() {
     var els = $$('.revela');
     if (reduzido() || !('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('visto'); }); return; }
-    var io = new IntersectionObserver(function (entradas) {
+    var io = criarObservador(function (entradas) {
       entradas.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
     els.forEach(function (e) { io.observe(e); });
@@ -298,7 +330,7 @@
     chips.forEach(function (c, k) { c.addEventListener('click', function () { selecionar(k, true); registrar('ciclo_etapa', { etapa: k + 1 }); }); });
     selecionar(0, false);
     if ('IntersectionObserver' in window && !reduzido()) {
-      var io = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { hexa.classList.add('em-vista'); io.disconnect(); } }, { threshold: 0.5 });
+      var io = criarObservador(function (e) { if (e[0].isIntersecting) { hexa.classList.add('em-vista'); io.disconnect(); } }, { threshold: 0.5 });
       io.observe(hexa);
     }
   }
@@ -405,7 +437,7 @@
     if (bCorrecao) bCorrecao.hidden = true;
     if ('IntersectionObserver' in window && !reduzido()) {
       cenas[0].classList.remove('ativa');
-      var io = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { io.disconnect(); if (!comecou) ir(0); } }, { threshold: 0.3 });
+      var io = criarObservador(function (e) { if (e[0].isIntersecting) { io.disconnect(); if (!comecou) ir(0); } }, { threshold: 0.3 });
       io.observe(palco);
     }
   }
@@ -739,10 +771,10 @@
      ------------------------------------------------------------------ */
   function iniciarContadores() {
     var els = $$('[data-alvo]');
-    function final(el) { el.textContent = Number(el.getAttribute('data-alvo')).toLocaleString('pt-BR'); }
+    function final(el) { el.textContent = decimal(Number(el.getAttribute('data-alvo')), 0); }
     if (reduzido() || !('IntersectionObserver' in window)) { els.forEach(final); return; }
     els.forEach(function (el) { el.textContent = '0'; });
-    var io = new IntersectionObserver(function (entradas) {
+    var io = criarObservador(function (entradas) {
       entradas.forEach(function (e) {
         if (!e.isIntersecting) return;
         io.unobserve(e.target);
@@ -750,7 +782,7 @@
         function quadro(t) {
           if (t0 === null) t0 = t;
           var p = Math.min(1, (t - t0) / dur), suave = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.round(alvo * suave).toLocaleString('pt-BR');
+          el.textContent = decimal(Math.round(alvo * suave), 0);
           if (p < 1) window.requestAnimationFrame(quadro); else final(el);
         }
         window.requestAnimationFrame(quadro);
@@ -768,7 +800,7 @@
     var passouHero = false, fimVisivel = false, demoNoCentro = [];
     var link = $('a', cta);
     // some enquanto uma demonstração ocupa o centro da tela, para não cobrir os controles
-    var ioDemo = new IntersectionObserver(function (entradas) {
+    var ioDemo = criarObservador(function (entradas) {
       entradas.forEach(function (e) {
         var i = demoNoCentro.indexOf(e.target);
         if (e.isIntersecting && i === -1) demoNoCentro.push(e.target);
@@ -846,21 +878,56 @@
     });
   }
 
+  /* Links internos (menu, "Ver o fluxo"): antes da rolagem suave, as seções entre
+     o ponto atual e o destino passam a ser desenhadas. Puladas, elas ocupam a altura
+     reservada no CSS, que difere da real, e a rolagem pararia no lugar errado. */
+  function iniciarLinksInternos() {
+    if (!cvComEvento) return;
+    doc.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      var alvo = a && a.getAttribute('href').length > 1 && doc.getElementById(a.getAttribute('href').slice(1));
+      if (!alvo) return;
+      var y = window.scrollY, yAlvo = alvo.getBoundingClientRect().top + y;
+      var de = Math.min(y, yAlvo), ate = Math.max(y, yAlvo) + window.innerHeight;
+      $$('.secao, .rodape').forEach(function (s) {
+        var r = s.getBoundingClientRect();
+        if (r.bottom + y > de && r.top + y < ate) s.style.contentVisibility = 'visible';
+      });
+      void alvo.offsetTop; // layout já com a altura real, antes da rolagem nativa
+    }, true);
+  }
+
+  // Roda cada parte numa tarefa própria, depois que a primeira tela pintou,
+  // para o celular não travar montando a página inteira de uma vez.
+  function depoisDoPrimeiroQuadro(partes) {
+    var i = 0, comecou = false;
+    function proxima() {
+      if (i >= partes.length) return;
+      try { partes[i++](); } finally { setTimeout(proxima, 0); }
+    }
+    function comecar() { if (comecou) return; comecou = true; setTimeout(proxima, 0); }
+    window.requestAnimationFrame(comecar);
+    setTimeout(comecar, 300); // aba em segundo plano não pinta quadros
+  }
+
   function iniciar() {
     if (D && D.os) { D.osPorId = {}; D.os.forEach(function (o) { D.osPorId[o.id] = o; }); }
-    iniciarClones();
     iniciarTopo();
+    iniciarLinksInternos();
     iniciarRevela();
     iniciarMesa();
-    iniciarCiclo();
-    iniciarCenas();
-    iniciarDocumentos();
-    iniciarAmpliar();
-    iniciarExplorar();
-    iniciarSaldo();
-    iniciarGanho();
-    iniciarContadores();
     iniciarCtaFixo();
+    depoisDoPrimeiroQuadro([
+      iniciarClones,
+      iniciarCiclo,
+      iniciarCenas,
+      iniciarDocumentos,
+      iniciarAmpliar,
+      iniciarExplorar,
+      iniciarSaldo,
+      iniciarGanho,
+      iniciarContadores
+    ]);
   }
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', iniciar); else iniciar();
 })();

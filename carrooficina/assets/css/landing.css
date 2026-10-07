@@ -146,6 +146,29 @@ main { overflow-x: clip; }
    Tipografia de seção
    -------------------------------------------------------------------------- */
 .secao { position: relative; padding-block: clamp(76px, 11vw, 136px); }
+/* Desempenho no celular: abaixo da abertura, cada seção só monta quando chega
+   perto da tela. A altura reservada é a medida em 390 px (e em 1440 px, abaixo);
+   depois da primeira vez o navegador guarda a altura real. */
+.secao, .rodape { content-visibility: auto; contain-intrinsic-size: auto 1700px; }
+#ciclo { contain-intrinsic-size: auto 1730px; }
+#documentos { contain-intrinsic-size: auto 4080px; }
+#medicao { contain-intrinsic-size: auto 3300px; }
+#ganho { contain-intrinsic-size: auto 1870px; }
+#implantacao { contain-intrinsic-size: auto 1380px; }
+#demonstracao { contain-intrinsic-size: auto 760px; }
+.rodape { contain-intrinsic-size: auto 730px; }
+@media (min-width: 1024px) {
+  #ciclo { contain-intrinsic-size: auto 1010px; }
+  #rat { contain-intrinsic-size: auto 1200px; }
+  #documentos { contain-intrinsic-size: auto 2090px; }
+  #medicao { contain-intrinsic-size: auto 2070px; }
+  #ganho { contain-intrinsic-size: auto 1040px; }
+  #implantacao { contain-intrinsic-size: auto 870px; }
+  #demonstracao { contain-intrinsic-size: auto 690px; }
+  .rodape { contain-intrinsic-size: auto 330px; }
+}
+/* navegador sem o evento de troca de estado: monta tudo, como antes (landing.js) */
+.sem-cv .secao, .sem-cv .rodape { content-visibility: visible; }
 .secao + .secao::before {
   content: "";
   position: absolute; top: 0; left: 50%;
@@ -351,6 +374,10 @@ main { overflow-x: clip; }
 
 .entra { opacity: 0; transform: translateY(14px); animation: entrar 620ms var(--ease-saida) forwards; animation-delay: calc(var(--i, 0) * 90ms + 80ms); }
 @keyframes entrar { to { opacity: 1; transform: none; } }
+/* o texto da abertura só sobe, sem esmaecer: a primeira pintura do título (LCP) não
+   espera a animação. Botão e mesa continuam com o esmaecimento. */
+.hero__produto.entra, .hero__titulo.entra, .hero__sub.entra { opacity: 1; animation-name: subir; }
+@keyframes subir { from { transform: translateY(14px); } to { transform: none; } }
 
 /* --------------------------------------------------------------------------
    Janela do produto (mesa de OS do hero e componentes de interface)
@@ -1124,11 +1151,11 @@ main { overflow-x: clip; }
 .rodape__grade { display: grid; gap: 28px; }
 @media (min-width: 900px) { .rodape__grade { grid-template-columns: 1.4fr 1fr 1fr; align-items: start; } }
 .rodape__marca p { margin-top: 16px; max-width: 30rem; font-size: .88rem; color: var(--tx3); }
-.rodape h4 { font: 500 .62rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--tx3); margin-bottom: 10px; }
+.rodape h2 { font: 500 .62rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--tx3); margin-bottom: 10px; }
 .rodape ul a { display: inline-flex; align-items: center; min-height: 40px; color: var(--tx2); text-decoration: none; font-size: .9rem; }
 .rodape ul a:hover { color: var(--marfim); text-decoration: underline; text-underline-offset: 4px; }
-.rodape__base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--borda); font-size: .76rem; color: var(--tx4); }
-.rodape__base span { color: var(--tx3); }
+.rodape__base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--borda); font-size: .76rem; color: var(--tx3); }
+.rodape__base span { color: var(--tx2); }
 
 /* CTA fixo no celular */
 .cta-fixo {
@@ -1152,7 +1179,8 @@ body.tem-cta-fixo .rodape { padding-bottom: calc(110px + env(safe-area-inset-bot
 /* revelação na rolagem */
 .revela { opacity: 0; transform: translateY(18px); transition: opacity 560ms var(--ease-saida), transform 560ms var(--ease-saida); }
 .revela.visto { opacity: 1; transform: none; }
-.sem-js .revela, .sem-js .entra { opacity: 1; transform: none; animation: none; }
+/* .entra é só CSS: a abertura anima com ou sem script e não pisca quando ele carrega */
+.sem-js .revela { opacity: 1; transform: none; }
 
 /* ==========================================================================
    Complementos (06/10): centro do hexágono, palco em grade, ampliação,
@@ -1376,7 +1404,7 @@ body.tem-cta-fixo .rodape { padding-bottom: calc(110px + env(safe-area-inset-bot
 .saldo__legenda i.t { background: var(--cobre); }
 .saldo__legenda i.p { background: repeating-linear-gradient(135deg, #5F5E5A 0 1.5px, transparent 1.5px 4px); box-shadow: inset 0 0 0 1px #5F5E5A; }
 .saldo__legenda dd { font: 500 .86rem/1.3 var(--f-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
-.saldo__legenda p { grid-column: 1 / -1; font-size: .8rem; line-height: 1.4; color: var(--tx3); }
+.saldo__legenda .saldo__nota { grid-column: 1 / -1; font: 400 .8rem/1.4 var(--f-sans); font-variant-numeric: normal; text-align: left; white-space: normal; color: var(--tx3); }
 .conta.brilha { border-radius: 2px; }
 
 .parado { display: grid; gap: 14px; margin-top: 16px; padding: 18px 16px; border: 1px solid rgba(184, 115, 51, .45); border-radius: var(--r4); background: linear-gradient(180deg, rgba(184, 115, 51, .08), rgba(184, 115, 51, .02)); }

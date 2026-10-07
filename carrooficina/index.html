@@ -26,9 +26,9 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-display-500-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/landing.css">
-<script src="assets/js/dados-demo.js" defer></script>
-<script src="assets/js/landing.js" defer></script>
+<link rel="stylesheet" href="assets/css/landing.css?v=2">
+<script src="assets/js/dados-demo.js?v=2" defer></script>
+<script src="assets/js/landing.js?v=2" defer></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebPage","name":"VALAR OPS · Gestão de contratos Carro Oficina","inLanguage":"pt-BR","url":"https://valar.tec.br/carrooficina/","publisher":{"@type":"Organization","name":"VALAR Inteligência","url":"https://valar.tec.br/","email":"contato@valar.tec.br"}}
 </script>
@@ -85,7 +85,7 @@
         <circle cx="30" cy="32" r="2.7" fill="#B87333"/>
       </svg>
       <span class="marca__filete" aria-hidden="true"></span>
-      <span class="marca__texto" aria-hidden="true"><span class="marca__nome">VALAR</span><span class="marca__regua"></span><span class="marca__sub">INTELIGÊNCIA</span></span>
+      <span class="marca__texto" aria-hidden="true"><span class="marca__nome">VALAR</span> <span class="marca__regua"></span> <span class="marca__sub">INTELIGÊNCIA</span></span>
     </a>
     <nav class="topo__nav" aria-label="Seções da página">
       <a href="#ciclo">Ciclo</a>
@@ -517,7 +517,7 @@
                   <div class="xlsx__cab">
                     <span><i>G1</i>Contrato Carro Oficina</span><span><i>G3</i>Prefixo 9512</span><span><i>G5</i>ORÇAMENTO</span><span><i>C6</i>Chamado / relatório</span><span><i>L1</i>Total <b data-doc-total>2.906,80</b></span>
                   </div>
-                  <table>
+                  <table role="presentation">
                     <colgroup><col style="width:2.2em"><col style="width:6em"><col style="width:3.6em"><col><col style="width:4.4em"><col style="width:3em"><col style="width:6.2em"></colgroup>
                     <tr><th></th><th>A</th><th>C</th><th>D</th><th>E</th><th>F</th><th>L</th></tr>
                     <tr class="cab"><td class="l">8</td><td>Ambiente</td><td>Cód. item</td><td>Descrição item do contrato</td><td class="num">Qtde.</td><td>Und.</td><td class="num">Valor total item</td></tr>
@@ -629,9 +629,9 @@
           <p class="saldo__valor" aria-live="polite">R$ <span data-saldo-valor="s">126.418,90</span></p>
           <div class="saldo__barra" aria-hidden="true"><span class="s" data-barra="s"></span><span class="t" data-barra="t"></span><span class="p" data-barra="p"></span></div>
           <dl class="saldo__legenda">
-            <div><dt><i class="s"></i>No saldo do ciclo</dt><dd>R$ <span data-saldo-valor="s2">126.418,90</span></dd><p><span data-saldo-qtd="s">31</span> OS com conformidade do banco de 21/09 a 20/10.</p></div>
-            <div><dt><i class="t"></i>Travado por chamado</dt><dd>R$ <span data-saldo-valor="t">7.364,20</span></dd><p><span data-saldo-qtd="t">2</span> OS conformadas, esperando a OS irmã do mesmo chamado.</p></div>
-            <div><dt><i class="p"></i>Pendentes de conformidade</dt><dd>R$ <span data-saldo-valor="p">48.730,10</span></dd><p><span data-saldo-qtd="p">9</span> OS concluídas, aguardando o banco.</p></div>
+            <div><dt><i class="s"></i>No saldo do ciclo</dt><dd>R$ <span data-saldo-valor="s2">126.418,90</span></dd><dd class="saldo__nota"><span data-saldo-qtd="s">31</span> OS com conformidade do banco de 21/09 a 20/10.</dd></div>
+            <div><dt><i class="t"></i>Travado por chamado</dt><dd>R$ <span data-saldo-valor="t">7.364,20</span></dd><dd class="saldo__nota"><span data-saldo-qtd="t">2</span> OS conformadas, esperando a OS irmã do mesmo chamado.</dd></div>
+            <div><dt><i class="p"></i>Pendentes de conformidade</dt><dd>R$ <span data-saldo-valor="p">48.730,10</span></dd><dd class="saldo__nota"><span data-saldo-qtd="p">9</span> OS concluídas, aguardando o banco.</dd></div>
           </dl>
         </div>
       </div>
@@ -794,12 +794,12 @@
         <a class="marca marca--grande" href="https://valar.tec.br/" aria-label="VALAR Inteligência, site institucional">
           <svg class="marca__simbolo" aria-hidden="true"><use href="#simbolo"/></svg>
           <span class="marca__filete" aria-hidden="true"></span>
-          <span class="marca__texto" aria-hidden="true"><span class="marca__nome">VALAR</span><span class="marca__regua"></span><span class="marca__sub">INTELIGÊNCIA</span></span>
+          <span class="marca__texto" aria-hidden="true"><span class="marca__nome">VALAR</span> <span class="marca__regua"></span> <span class="marca__sub">INTELIGÊNCIA</span></span>
         </a>
         <p>Automação, integração de sistemas e IA aplicada à operação. O VALAR OPS é a plataforma operacional da VALAR, aqui na sua aplicação para contratos Carro Oficina.</p>
       </div>
       <div>
-        <h4>VALAR</h4>
+        <h2>VALAR</h2>
         <ul>
           <li><a href="https://valar.tec.br/">valar.tec.br</a></li>
           <li><a href="https://valar.tec.br/valarops/">Plataforma VALAR OPS</a></li>
@@ -807,7 +807,7 @@
         </ul>
       </div>
       <div>
-        <h4>Contato</h4>
+        <h2>Contato</h2>
         <ul>
           <li><a href="https://valar.tec.br/contato/?origem=valarops-carro-oficina">Formulário de contato</a></li>
           <li><a href="mailto:contato@valar.tec.br">contato@valar.tec.br</a></li>
