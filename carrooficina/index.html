@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="pt-BR" class="sem-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VALAR OPS · Gestão de contratos Carro Oficina | VALAR Inteligência</title>
+<meta name="description" content="O VALAR OPS acompanha cada OS do contrato Carro Oficina do Banco do Brasil: coleta do portal, RAT emitida e conferida, documentos gerados e anexados, saldo da medição e o que segura o pagamento.">
+<meta name="theme-color" content="#0A0A0B">
+<meta name="color-scheme" content="dark">
+
+<!-- PUBLICAÇÃO: https://valar.tec.br/carrooficina/ (web_institucional/public/carrooficina). Mudando o endereço, troque a URL nas 4 linhas marcadas com "rota" e no campo "url" do JSON-LD abaixo. -->
+<link rel="canonical" href="https://valar.tec.br/carrooficina/"><!-- rota -->
+<meta property="og:url" content="https://valar.tec.br/carrooficina/"><!-- rota -->
+<meta property="og:image" content="https://valar.tec.br/carrooficina/assets/img/og-carro-oficina.jpg"><!-- rota -->
+<meta name="twitter:image" content="https://valar.tec.br/carrooficina/assets/img/og-carro-oficina.jpg"><!-- rota -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="VALAR Inteligência">
+<meta property="og:title" content="VALAR OPS · Gestão de contratos Carro Oficina">
+<meta property="og:description" content="Do acionamento ao pagamento: OS, RATs, documentos e medição do contrato Carro Oficina num sistema só. Veja a demonstração com dados fictícios.">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="VALAR Inteligência · VALAR OPS · Gestão de contratos Carro Oficina">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/inter-display-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/landing.css">
+<script src="assets/js/dados-demo.js" defer></script>
+<script src="assets/js/landing.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"VALAR OPS · Gestão de contratos Carro Oficina","inLanguage":"pt-BR","url":"https://valar.tec.br/carrooficina/","publisher":{"@type":"Organization","name":"VALAR Inteligência","url":"https://valar.tec.br/","email":"contato@valar.tec.br"}}
+</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- símbolo do sistema (geometria v1.1.1, traço do produto) e ícones -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="simbolo" viewBox="0 0 60 68">
+      <g fill="none" stroke="#F5F5F3" stroke-linejoin="round">
+        <polygon points="30,4 54,18 54,46 30,60 6,46 6,18" stroke-width="1.3" vector-effect="non-scaling-stroke"/>
+        <polygon points="30,12.75 46.5,22.375 46.5,41.625 30,51.25 13.5,41.625 13.5,22.375" stroke-width="1" opacity="0.55" vector-effect="non-scaling-stroke"/>
+      </g>
+      <g stroke="#F5F5F3" stroke-width="0.6" opacity="0.24">
+        <line x1="30" y1="26.96" x2="30" y2="4" vector-effect="non-scaling-stroke"/><line x1="34.32" y1="29.48" x2="54" y2="18" vector-effect="non-scaling-stroke"/>
+        <line x1="34.32" y1="34.52" x2="54" y2="46" vector-effect="non-scaling-stroke"/><line x1="30" y1="37.04" x2="30" y2="60" vector-effect="non-scaling-stroke"/>
+        <line x1="25.68" y1="34.52" x2="6" y2="46" vector-effect="non-scaling-stroke"/><line x1="25.68" y1="29.48" x2="6" y2="18" vector-effect="non-scaling-stroke"/>
+      </g>
+      <circle cx="30" cy="32" r="11.2" fill="none" stroke="#B87333" stroke-width="0.8" opacity="0.22" vector-effect="non-scaling-stroke"/>
+      <circle cx="30" cy="32" r="7" fill="none" stroke="#B87333" stroke-width="0.9" opacity="0.42" vector-effect="non-scaling-stroke"/>
+      <circle cx="30" cy="32" r="2.6" fill="#B87333"/>
+    </symbol>
+    <symbol id="i-visto" viewBox="0 0 16 11"><path d="M1 5.8l2.6 2.6L9.6 1.6M6.6 8.4l1 1L14.6 1.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-grupo" viewBox="0 0 20 20"><circle cx="7" cy="7" r="3" fill="currentColor"/><circle cx="14" cy="8" r="2.4" fill="currentColor" opacity=".7"/><path d="M1.5 17c.6-3.4 2.8-5.2 5.5-5.2s4.9 1.8 5.5 5.2z" fill="currentColor"/><path d="M12.6 12.3c2.6-.4 4.7 1 5.4 4.2h-4.3" fill="currentColor" opacity=".7"/></symbol>
+    <symbol id="i-email" viewBox="0 0 16 16"><rect x="1.8" y="3.3" width="12.4" height="9.4" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M2.4 4.2L8 8.6l5.6-4.4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 16 16"><path d="M8 1.8a6.1 6.1 0 00-5.3 9.2L1.8 14.2l3.3-.9A6.1 6.1 0 108 1.8z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5.8 5.4c.2-.4.5-.4.7-.4s.4.3.6.8.2.6 0 .8l-.4.5c.4.8 1.1 1.5 1.9 1.9l.5-.4c.2-.2.4-.2.8 0s.8.4.8.6 0 .5-.4.7c-.4.4-1 .5-1.6.3A5.2 5.2 0 015.5 7c-.2-.6-.1-1.2.3-1.6z" fill="currentColor"/></symbol>
+    <symbol id="i-livro" viewBox="0 0 16 16"><path d="M3 2.5h7.5a2 2 0 012 2v9H5a2 2 0 01-2-2z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5.5 5.5h4.5M5.5 8h4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
+    <symbol id="i-portal" viewBox="0 0 16 16"><rect x="2.5" y="3" width="11" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 6h11M5.5 9.5l1.6 1.5 3.4-3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-ok" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-x" viewBox="0 0 16 16"><path d="M4.5 4.5l7 7m0-7l-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-espera" viewBox="0 0 16 16"><circle cx="4" cy="8" r="1.3" fill="currentColor"/><circle cx="8" cy="8" r="1.3" fill="currentColor"/><circle cx="12" cy="8" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-pasta" viewBox="0 0 16 16"><path d="M1.8 4.2h4.4l1.4 1.6h6.6v7.4H1.8z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    <symbol id="i-envia" viewBox="0 0 16 16"><path d="M2 8l11.5-5.5L9.6 14l-1.9-4.7z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    <symbol id="i-lupa" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10.2 10.2l3.3 3.3M5.3 7h3.4M7 5.3v3.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-engrenagem" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 1.8v2M8 12.2v2M1.8 8h2M12.2 8h2M3.6 3.6l1.4 1.4M11 11l1.4 1.4M3.6 12.4L5 11M11 5l1.4-1.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
+    <symbol id="i-tesoura" viewBox="0 0 16 16"><circle cx="4.5" cy="11.5" r="2" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="11.5" cy="11.5" r="2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M5.8 10L12 2.5M10.2 10L4 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<header class="topo" role="banner">
+  <div class="recipiente topo__inner">
+    <a class="marca" href="https://valar.tec.br/" aria-label="VALAR Inteligência, site institucional">
+      <svg class="marca__simbolo desenha" viewBox="0 0 60 68" aria-hidden="true" focusable="false">
+        <polygon class="simbolo-traco" points="30,4 54,18 54,46 30,60 6,46 6,18" stroke-width="1.25" pathLength="200"/>
+        <polygon class="simbolo-traco" points="30,12.75 46.5,22.375 46.5,41.625 30,51.25 13.5,41.625 13.5,22.375" stroke-width="0.9" opacity="0.55" pathLength="200"/>
+        <g class="simbolo-eixo" stroke-width="0.6">
+          <line x1="30" y1="26.96" x2="30" y2="4"/><line x1="34.32" y1="29.48" x2="54" y2="18"/><line x1="34.32" y1="34.52" x2="54" y2="46"/>
+          <line x1="30" y1="37.04" x2="30" y2="60"/><line x1="25.68" y1="34.52" x2="6" y2="46"/><line x1="25.68" y1="29.48" x2="6" y2="18"/>
+        </g>
+        <circle class="simbolo-halo" cx="30" cy="32" r="11.2" stroke-width="0.8" opacity="0.22"/>
+        <circle class="simbolo-halo" cx="30" cy="32" r="7" stroke-width="0.9" opacity="0.42"/>
+        <circle cx="30" cy="32" r="2.7" fill="#B87333"/>
+      </svg>
+      <span class="marca__filete" aria-hidden="true"></span>
+      <span class="marca__texto" aria-hidden="true"><span class="marca__nome">VALAR</span><span class="marca__regua"></span><span class="marca__sub">INTELIGÊNCIA</span></span>
+    </a>
+    <nav class="topo__nav" aria-label="Seções da página">
+      <a href="#ciclo">Ciclo</a>
+      <a href="#rat">RAT</a>
+      <a href="#documentos">Documentos</a>
+      <a href="#medicao">Medição</a>
+      <a href="#implantacao">Implantação</a>
+    </nav>
+    <a class="botao botao--cobre topo__cta" href="https://valar.tec.br/contato/?origem=valarops-carro-oficina" data-evento="cta_topo"><span class="longo">Solicitar demonstração</span><span class="curto">Demonstração</span></a>
+  </div>
+  <div class="topo__progresso" aria-hidden="true"><span></span></div>
+</header>
+
+<main id="conteudo">
+
+<!-- ============================ 1. HERO ============================ -->
+<section class="hero" aria-labelledby="hero-titulo">
+  <div class="recipiente hero__grade">
+    <div>
+      <p class="hero__produto entra" style="--i:0">
+        <svg aria-hidden="true"><use href="#simbolo"/></svg>
+        <span>VALAR OPS</span><span class="divisor" aria-hidden="true"></span><span class="contexto">Gestão de contratos Carro Oficina</span>
+      </p>
+      <h1 class="hero__titulo entra" id="hero-titulo" style="--i:1">Do acionamento ao pagamento. <span class="l2">Cada OS com o próximo passo à vista.</span></h1>
+      <p class="hero__sub entra" style="--i:2">Para prestadoras de manutenção predial com contrato Carro Oficina do Banco do Brasil. <strong>O que é regra roda sozinho. O que é decisão fica com a sua equipe.</strong></p>
+      <div class="hero__acoes entra" style="--i:3">
+        <a class="botao botao--cobre" href="https://valar.tec.br/contato/?origem=valarops-carro-oficina" data-evento="cta_hero">Solicitar demonstração <span class="seta" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <div class="hero__demo">
+      <div class="janela mesa entra" id="mesa" style="--i:5" data-mesa>
+      <div class="janela__barra">
+        <span class="janela__produto"><svg aria-hidden="true"><use href="#simbolo"/></svg>VALAR OPS <span class="tela">· MESA DE OS</span></span>
+        <span class="selo-demo">Demonstração com dados fictícios</span>
+      </div>
+      <div class="mesa__resumo">
+        <div><b data-resumo="abertas">6</b><span>Na mesa</span></div>
+        <div><b class="cobre" data-resumo="atencao">3</b><span>Risco de queda</span></div>
+        <div><b data-resumo="portal">3</b><span>Gravações no portal hoje</span></div>
+      </div>
+      <ol class="mesa__lista" aria-label="OS da demonstração">
+        <li class="os-linha"><span class="os-linha__id">OS 260311872</span><span class="prazo prazo--amanha">Reitera amanhã</span><span class="os-linha__ag">Ag. Pedra Alta · RS · Elétrica</span><span class="os-linha__evento"><span class="txt">RAT 1 emitida e enviada ao gerente · aguardando assinatura em campo</span></span></li>
+        <li class="os-linha"><span class="os-linha__id">OS 260309415</span><span class="prazo prazo--hoje">Cai hoje</span><span class="os-linha__ag">Ag. Vale das Garças · RS · Civil</span><span class="os-linha__evento"><span class="txt">Orçamento pronto para revisão · 18,00 m² de forro</span></span></li>
+        <li class="os-linha"><span class="os-linha__id">OS 260251309</span><span class="prazo prazo--trava">Travado por chamado</span><span class="os-linha__ag">Ag. Serra Azul · RS · Civil</span><span class="os-linha__evento"><span class="txt">Conformada · o chamado ainda tem OS sem conformidade</span></span></li>
+      </ol>
+      <div class="feed">
+        <div class="feed__topo">
+          <span class="rotulo"><span class="feed__ponto" aria-hidden="true"></span><span data-mesa-estado>Eventos da demonstração</span></span>
+          <button type="button" class="feed__botao" data-mesa-tocar aria-pressed="true" aria-label="Pausar a demonstração">
+            <svg class="i-pausa" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9M11 3.5v9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg class="i-tocar" viewBox="0 0 16 16" aria-hidden="true" style="display:none"><path d="M5 3.2l8 4.8-8 4.8z" fill="currentColor"/></svg>
+            <span class="rot">Pausar</span>
+          </button>
+          <button type="button" class="feed__botao" data-mesa-repetir hidden>
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8a5 5 0 105-5H5.5M5.5 3L8 .8M5.5 3L8 5.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Repetir
+          </button>
+        </div>
+        <ol class="feed__lista">
+          <li><time>14:05</time><span><span class="os">OS 260309415</span> · planilha, Word e PDF gerados da mesma base</span></li>
+          <li><time>13:52</time><span><span class="os">OS 260274466</span> · RAT 2 registrada no portal · valor relido confere</span></li>
+          <li><time>13:30</time><span><span class="os">OS 260288241</span> · coletada do Portal BB · aviso no grupo</span></li>
+        </ol>
+      </div>
+    </div>
+      <a class="hero__mais link-seta" href="#ciclo" data-evento="hero_ver_fluxo">Ver o fluxo em ação <span aria-hidden="true">↓</span></a>
+      <p class="hero__prova"><b>225</b><span>dependências em atendimento na operação de referência · cadastro ativo, 31/08/2026</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 2. CICLO ============================ -->
+<section class="secao" id="ciclo" data-ciclo aria-labelledby="ciclo-titulo">
+  <div class="recipiente">
+    <header class="cabeca revela">
+      <p class="sobrelinha">O ciclo do contrato</p>
+      <h2 class="titulo-2" id="ciclo-titulo">Seis etapas entre o acionamento e o pagamento. <em>Cada uma com responsável e evidência.</em></h2>
+      <p class="lide">Toque numa etapa para ver o que entra, o que o VALAR OPS faz, o que continua com a sua equipe e o que libera o passo seguinte.</p>
+    </header>
+
+    <div class="ciclo__grade">
+      <div class="hexa revela">
+        <svg viewBox="0 0 300 300" aria-hidden="true" focusable="false">
+          <polygon class="hexa__contorno" points="150,30 253.92,90 253.92,210 150,270 46.08,210 46.08,90"/>
+          <polygon class="hexa__interno" points="150,67.56 221.4,108.78 221.4,191.22 150,232.44 78.6,191.22 78.6,108.78"/>
+          <line class="hexa__eixo" x1="150" y1="135" x2="150" y2="30"/>
+          <line class="hexa__eixo" x1="162.99" y1="142.5" x2="253.92" y2="90"/>
+          <line class="hexa__eixo" x1="162.99" y1="157.5" x2="253.92" y2="210"/>
+          <line class="hexa__eixo" x1="150" y1="165" x2="150" y2="270"/>
+          <line class="hexa__eixo" x1="137.01" y1="157.5" x2="46.08" y2="210"/>
+          <line class="hexa__eixo" x1="137.01" y1="142.5" x2="46.08" y2="90"/>
+          <polygon class="hexa__halo" points="150,102 191.57,126 191.57,174 150,198 108.43,174 108.43,126" stroke-width="0.9" opacity="0.3"/>
+          <polygon class="hexa__halo" points="150,120 175.98,135 175.98,165 150,180 124.02,165 124.02,135" stroke-width="1" opacity="0.55"/>
+          <circle class="hexa__nucleo" cx="150" cy="150" r="7.5"/>
+          <path class="hexa__fluxo" d="M150 30 L253.92 90 L253.92 210 L150 270 L46.08 210 L46.08 90 Z"/>
+        </svg>
+        <button type="button" class="hexa__no" style="left:50%;top:10%" aria-pressed="true" aria-label="Etapa 1, acionamento">1</button>
+        <button type="button" class="hexa__no" style="left:84.64%;top:30%" aria-pressed="false" aria-label="Etapa 2, preparação e execução">2</button>
+        <button type="button" class="hexa__no" style="left:84.64%;top:70%" aria-pressed="false" aria-label="Etapa 3, RAT">3</button>
+        <button type="button" class="hexa__no" style="left:50%;top:90%" aria-pressed="false" aria-label="Etapa 4, registro no portal">4</button>
+        <button type="button" class="hexa__no" style="left:15.36%;top:70%" aria-pressed="false" aria-label="Etapa 5, medição">5</button>
+        <button type="button" class="hexa__no" style="left:15.36%;top:30%" aria-pressed="false" aria-label="Etapa 6, pagamento">6</button>
+        <p class="hexa__centro" data-ciclo-centro aria-hidden="true">Acionamento</p>
+      </div>
+
+      <div class="revela">
+        <div class="etapas-trilho" role="group" aria-label="Etapas do ciclo">
+          <button type="button" aria-pressed="true"><b>01</b>Acionamento</button>
+          <button type="button" aria-pressed="false"><b>02</b>Preparação</button>
+          <button type="button" aria-pressed="false"><b>03</b>RAT</button>
+          <button type="button" aria-pressed="false"><b>04</b>Portal</button>
+          <button type="button" aria-pressed="false"><b>05</b>Medição</button>
+          <button type="button" aria-pressed="false"><b>06</b>Pagamento</button>
+        </div>
+        <article class="etapa" aria-live="polite">
+          <div class="etapa__corpo"><p class="etapa__resumo">A OS chega do Portal BB e entra na mesa, com régua de prazo e aviso no grupo da agência.</p></div>
+        </article>
+        <div class="legenda-selos" aria-label="Legenda">
+          <span><span class="selo selo--auto">Automático</span> roda sem clique da equipe</span>
+          <span><span class="selo selo--assistido">Assistido</span> o sistema prepara, a equipe confirma</span>
+          <span><span class="selo selo--humano">Equipe</span> decisão humana</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 3. RAT ============================ -->
+<section class="secao" id="rat" data-cenas aria-labelledby="rat-titulo">
+  <div class="recipiente">
+    <header class="cabeca revela">
+      <p class="sobrelinha">RAT · da emissão ao portal</p>
+      <h2 class="titulo-2" id="rat-titulo">Emitida, assinada, conferida e registrada. <em>Cada passo da RAT à vista.</em></h2>
+      <p class="lide">Seis cenas com dados fictícios. Avance no seu ritmo: cada uma mostra o que é do sistema, o que é da equipe e o que acontece em campo.</p>
+    </header>
+
+    <div class="cenas revela">
+      <div class="cenas__trilho" role="group" aria-label="Cenas da RAT">
+        <button type="button" aria-current="step"><b>01</b><span>Itens e emissão</span></button>
+        <button type="button"><b>02</b><span>Envio</span></button>
+        <button type="button"><b>03</b><span>Assinatura</span></button>
+        <button type="button"><b>04</b><span>WhatsApp</span></button>
+        <button type="button"><b>05</b><span>Conferência</span></button>
+        <button type="button"><b>06</b><span>Portal</span></button>
+      </div>
+
+      <div class="controles cenas__controles">
+        <button type="button" class="botao botao--linha" data-cena="voltar" aria-label="Cena anterior"><span aria-hidden="true">←</span> Voltar</button>
+        <button type="button" class="botao botao--cobre" data-cena="avancar" aria-label="Próxima cena">Avançar <span class="seta" aria-hidden="true">→</span></button>
+        <button type="button" class="botao botao--fantasma" data-cena="reiniciar">Reiniciar</button>
+        <span class="contador" aria-hidden="true">1 / 6</span>
+      </div>
+
+      <div class="palco" aria-roledescription="sequência de cenas" aria-label="Demonstração da RAT. Use os botões ou as setas do teclado para navegar.">
+        <span class="selo-demo palco__selo">Demonstração com dados fictícios</span>
+
+        <!-- Cena 1: Estação de RAT -->
+        <div class="palco__cena ativa" data-n="1">
+          <div class="ui passo" style="--i:0">
+            <div class="ui__barra"><svg aria-hidden="true"><use href="#simbolo"/></svg>Estação de RAT<span class="dir">OS 260311872</span></div>
+            <div class="ui__corpo">
+              <div class="ui__os"><b>RAT 1</b><span>Ag. Pedra Alta · RS · Elétrica</span></div>
+              <table class="ui-tabela">
+                <thead><tr><th>Item</th><th>Tabela do contrato</th><th class="num">Qtd</th><th class="num">Total</th></tr></thead>
+                <tbody>
+                  <tr><td class="cod">1.1</td><td>Chamado <span class="ui__nota">fixo</span></td><td class="num">1 un</td><td class="num">96,00</td></tr>
+                  <tr><td class="cod">1.2</td><td>Deslocamento <span class="ui__nota">km do cadastro</span></td><td class="num">64 km</td><td class="num">179,20</td></tr>
+                  <tr><td class="cod">4.12</td><td>Luminária LED 2×18 W</td><td class="num">4 un</td><td class="num">745,60</td></tr>
+                  <tr><td class="cod">4.15</td><td>Reator eletrônico</td><td class="num">4 un</td><td class="num">299,60</td></tr>
+                </tbody>
+                <tfoot><tr><td colspan="3">Valor total</td><td class="num">R$ 1.320,40</td></tr></tfoot>
+              </table>
+              <div class="ui__acoes"><span class="ui__nota" style="margin-right:auto">Itens e preços fictícios</span><span class="ui__botao ui__botao--linha">Prévia do PDF</span><span class="ui__botao">Emitir</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cena 2: distribuição -->
+        <div class="palco__cena" data-n="2">
+          <div class="destinos">
+            <div class="destinos__origem passo" style="--i:0"><span class="destinos__pdf">PDF</span><div><b>RAT-260311872-9481_1.pdf</b><small>Gerada às 09:12 · Ag. Pedra Alta</small></div></div>
+            <div class="destino destino--banco passo" style="--i:1"><span class="destino__icone"><svg aria-hidden="true"><use href="#i-email"/></svg></span><div><b>E-mail ao gerente e à caixa da agência</b><small>Assunto: RAT para assinatura · Ag. 9481 · OS 260311872. Pede a assinatura da dependência e o registro da conformidade no portal do banco.</small><span class="estado">Aceito pelo servidor de e-mail</span></div></div>
+            <div class="destino destino--equipe passo" style="--i:2"><span class="destino__icone"><svg aria-hidden="true"><use href="#i-wa"/></svg></span><div><b>Comprovante nos grupos da agência e da base</b><small>De, para, data, assunto e anexo. Publicado só depois do aceite.</small><span class="estado">Publicado</span></div></div>
+            <div class="destino destino--medicao passo" style="--i:3"><span class="destino__icone"><svg aria-hidden="true"><use href="#i-livro"/></svg></span><div><b>Livro da OS</b><small>Itens e valores ficam registrados por código, para a conferência com o portal.</small><span class="estado">Registrado</span></div></div>
+          </div>
+        </div>
+
+        <!-- Cena 3: a RAT em papel, no modelo gerado pelo sistema -->
+        <div class="palco__cena" data-n="3">
+          <div class="ampliavel passo" style="--i:0">
+            <div class="papel rat" id="rat-papel" role="img" aria-label="RAT 1 da OS 260311872 impressa e assinada: visto da empresa contratada e carimbo e visto da dependência">
+              <div class="rat__topo">
+                <div class="rat__logo">Logo da<br>contratada</div>
+                <div class="rat__titulo">RAT · Relatório de Atendimento<small>Execução dos serviços</small></div>
+                <div class="rat__logo">Logo do<br>banco</div>
+              </div>
+              <div class="rat__id">
+                <div class="rat__os"><span>Ordem de serviço</span><b data-rat="os">260311872</b></div>
+                <div><span>Chamado</span><b data-rat="chamado">C041930558</b></div>
+                <div><span>Criticidade</span><b>Normal</b></div>
+                <div><span>Tipo</span><b>Corretiva</b></div>
+                <div><span>Prazo atendimento</span><b>10/10/2026</b></div>
+                <div><span>Abertura</span><b>01/10 08:40</b></div>
+                <div><span>Contratada</span><b>Prestadora Demo</b></div>
+                <div><span>Funcionário solicitante</span><b>Gerência da agência</b></div>
+                <div><span>Prefixo / SB</span><b data-rat="prefixo">9481</b></div>
+                <div><span>Dependência beneficiada</span><b data-rat="dependencia">Ag. Pedra Alta · RS</b></div>
+              </div>
+              <p class="rat__barra">Serviço solicitado · Portal de Manutenção</p>
+              <p class="rat__texto" data-rat="servico">Troca das luminárias da sala de autoatendimento.</p>
+              <p class="rat__barra">Orçamento dos serviços realizados</p>
+              <table class="rat__itens">
+                <thead><tr><th>Item</th><th>Descrição</th><th class="num">Qtd.</th><th>Unid.</th><th class="num">Valor unit.</th><th class="num">Valor total</th></tr></thead>
+                <tbody data-rat="itens">
+                  <tr class="fixo"><td>1.1</td><td>Chamado</td><td class="num">1</td><td>un</td><td class="num">96,00</td><td class="num">96,00</td></tr>
+                  <tr class="fixo"><td>1.2</td><td>Deslocamento</td><td class="num">64</td><td>km</td><td class="num">2,80</td><td class="num">179,20</td></tr>
+                  <tr><td>4.12</td><td>Luminária LED 2×18 W</td><td class="num">4</td><td>un</td><td class="num">186,40</td><td class="num">745,60</td></tr>
+                  <tr><td>4.15</td><td>Reator eletrônico</td><td class="num">4</td><td>un</td><td class="num">74,90</td><td class="num">299,60</td></tr>
+                  <tr class="vazia"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+              </table>
+              <div class="rat__totais">
+                <div><span>Conclusão</span><b>06/10 11:40</b></div>
+                <div><span>Chamado + desloc.</span><b>275,20</b></div>
+                <div><span>Materiais + M.O.</span><b data-rat="mo">1.045,20</b></div>
+                <div class="total"><span>Valor total</span><b data-rat="total">1.320,40</b></div>
+              </div>
+              <p class="rat__barra">Observação</p>
+              <p class="rat__obs">Funcionamento testado com a gerência.</p>
+              <div class="rat__assinaturas">
+                <div class="rat__assinatura">
+                  <svg viewBox="0 0 120 30" aria-hidden="true"><path class="assinatura-traco" style="--atraso:500ms" d="M4 22c6-14 10-16 12-8s-2 12 3 6 7-14 10-10-2 10 4 8 8-9 13-9 4 7 9 6 9-6 14-6 6 3 11 2"/></svg>
+                  <p class="linha">Visto representante da empresa contratada</p>
+                </div>
+                <div class="rat__assinatura">
+                  <svg viewBox="0 0 120 30" aria-hidden="true"><path class="assinatura-traco" style="--atraso:1100ms" d="M6 18c8-2 9-12 15-12s-6 18 2 16 8-14 14-12-4 10 3 9 10-10 16-8 3 6 10 4 8-4 14-3c6 1 10-2 16-4"/></svg>
+                  <p class="linha">Carimbo e visto da dependência</p>
+                </div>
+              </div>
+              <div class="rat__equipe">
+                <div><span>Técnico</span><b>Equipe RS-03</b></div>
+                <div><span>Início</span><b>06/10 09:30</b></div>
+                <div><span>Saída</span><b>06/10 11:40</b></div>
+                <div class="crea"><span>Resp. técnico · CREA</span><b class="carimbo-crea">RESP. TÉCNICO · CREA-RS DEMO</b></div>
+              </div>
+              <div class="carimbo" data-rat="carimbo">Ag. Pedra Alta<br>gerência<br>06/10/2026</div>
+              <p class="rat__rodape"><span>Emitida pelo VALAR OPS</span><span>Página 1 de 1</span></p>
+            </div>
+            <button type="button" class="ampliar-botao" data-ampliar-alvo="rat-papel" data-ampliar-titulo="RAT 1 da OS 260311872"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6V2.5H6M13.5 6V2.5H10M2.5 10v3.5H6M13.5 10v3.5H10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Ampliar</button>
+          </div>
+        </div>
+
+        <!-- Cena 4: foto no WhatsApp -->
+        <div class="palco__cena" data-n="4">
+          <div class="wa passo" style="--i:0" role="img" aria-label="Conversa do grupo da agência no WhatsApp: o técnico envia a foto da RAT assinada e o VALAR OPS responde que reconheceu a RAT e começou o processamento">
+            <div class="wa__barra">
+              <svg class="wa__voltar" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="wa__avatar"><svg aria-hidden="true"><use href="#i-grupo"/></svg></span>
+              <span class="wa__grupo"><b>Ag. Pedra Alta · Manutenção</b><span>Técnico, Gerência, Escritório, VALAR OPS</span></span>
+              <span class="wa__canal">WHATSAPP</span>
+            </div>
+            <div class="wa__conversa">
+              <span class="wa__dia">HOJE</span>
+              <div class="wa__msg wa__msg--in wa__msg--foto" style="--i:0">
+                <span class="wa__autor a2" style="padding:3px 5px 0">Técnico · Elétrica</span>
+                <button type="button" class="foto-rat__botao" data-ampliar-alvo="rat-papel" data-ampliar-titulo="RAT 1 da OS 260311872" aria-label="Ampliar a RAT fotografada"><span class="foto-rat" data-clonar="rat-papel" data-foto="inteira"></span></button>
+                <span class="legenda">Serviço concluído na sala de autoatendimento. Segue a RAT assinada.</span>
+                <span class="wa__meta">14:32</span>
+              </div>
+              <div class="wa__linha" style="--i:1"><span class="wa__av" aria-hidden="true"><svg><use href="#simbolo"/></svg></span><div class="wa__msg wa__msg--in wa__msg--sistema" style="--i:1"><span class="wa__autor">VALAR OPS</span>RAT reconhecida, OS 260311872. Processamento iniciado: vou cadastrar no Portal BB e avisar em cada etapa.<span class="wa__meta">14:32</span></div></div>
+            </div>
+            <div class="wa__escrita"><span>Mensagem</span><i aria-hidden="true"><svg><use href="#i-envia"/></svg></i></div>
+          </div>
+        </div>
+
+        <!-- Cena 5: conferência (aprovação ou correção) -->
+        <div class="palco__cena" data-n="5" data-conferencia>
+          <div class="variante-ok" style="width:100%;display:grid;place-items:center">
+            <div class="ui passo" style="--i:0">
+              <div class="ui__barra"><svg aria-hidden="true"><use href="#simbolo"/></svg>Conferência da foto<span class="dir">RAT 1 · 14:32</span></div>
+              <div class="ui__corpo" style="gap:2px">
+                <div class="ui-check"><i><svg><use href="#i-ok"/></svg></i><span>É uma RAT do sistema</span><small>cabeçalho lido</small></div>
+                <div class="ui-check"><i><svg><use href="#i-ok"/></svg></i><span>Foto nítida e legível</span><small>leitura ok</small></div>
+                <div class="ui-check"><i><svg><use href="#i-ok"/></svg></i><span>Folha inteira, com o rodapé</span><small>ok</small></div>
+                <div class="ui-check"><i><svg><use href="#i-ok"/></svg></i><span>Número da OS lido</span><small>260311872</small></div>
+                <div class="ui-check"><i><svg><use href="#i-ok"/></svg></i><span>Itens e valor batem com a emissão</span><small>4 de 4</small></div>
+                <div class="ui-check"><i><svg><use href="#i-ok"/></svg></i><span>Datas do rodapé conferem</span><small>06/10</small></div>
+                <div class="ui-check"><i><svg><use href="#i-ok"/></svg></i><span>Assinaturas da contratada e da dependência</span><small>presentes</small></div>
+                <div class="ui-resultado ui-resultado--ok" data-resultado hidden style="margin-top:8px"><svg width="16" height="16" aria-hidden="true"><use href="#i-ok"/></svg>Aprovada para cadastro no portal</div>
+              </div>
+            </div>
+          </div>
+          <div class="variante-correcao" hidden style="width:100%;display:grid;gap:10px;justify-items:center">
+            <div class="ui">
+              <div class="ui__barra"><svg aria-hidden="true"><use href="#simbolo"/></svg>Conferência da foto<span class="dir">RAT 1 · OS 260266050 · 11:18</span></div>
+              <div class="ui__corpo" style="gap:2px">
+                <div class="ui-check"><i><svg><use href="#i-ok"/></svg></i><span>É uma RAT do sistema</span><small>cabeçalho lido</small></div>
+                <div class="ui-check"><i><svg><use href="#i-ok"/></svg></i><span>Foto nítida e legível</span><small>leitura ok</small></div>
+                <div class="ui-check" data-falha="sim"><i><svg><use href="#i-x"/></svg></i><span>Folha inteira, com o rodapé</span><small>cortada no pé</small></div>
+                <div class="ui-resultado ui-resultado--falha" data-resultado hidden style="margin-top:8px"><svg width="16" height="16" aria-hidden="true"><use href="#i-x"/></svg>Nada foi ao portal · motivo enviado ao grupo</div>
+              </div>
+            </div>
+            <div class="wa" data-resultado hidden style="max-width:420px">
+              <div class="wa__conversa" style="min-height:0;padding:8px">
+                <div class="wa__msg wa__msg--in wa__msg--foto" style="opacity:1;transform:none;width:62%"><span class="wa__autor a2" style="padding:3px 5px 0">Técnico · Elétrica</span><span class="foto-rat foto-rat--cortada" data-clonar="rat-papel" data-foto="cortada" data-variante="rio-manso" aria-hidden="true"></span><span class="legenda">Segue a RAT.</span><span class="wa__meta">11:18</span></div>
+                <div class="wa__linha"><span class="wa__av" aria-hidden="true"><svg><use href="#simbolo"/></svg></span><div class="wa__msg wa__msg--in wa__msg--sistema" style="opacity:1;transform:none"><span class="wa__autor">VALAR OPS</span>A RAT 1 da OS 260266050 chegou cortada no pé da folha: faltaram as datas de início e saída e o carimbo do responsável técnico. Fotografe a folha inteira, até o rodapé, e reenvie.<span class="wa__meta">11:20</span></div></div>
+                <div class="wa__msg wa__msg--in" style="opacity:1;transform:none"><span class="wa__autor a2">Técnico · Elétrica</span>Segue a folha inteira.<span class="wa__meta">15:10</span></div>
+                <div class="wa__linha"><span class="wa__av" aria-hidden="true"><svg><use href="#simbolo"/></svg></span><div class="wa__msg wa__msg--in wa__msg--sistema" style="opacity:1;transform:none"><span class="wa__autor">VALAR OPS</span>RAT 1 da OS 260266050 arquivada, cadastrada e anexada no Portal (assinaturas presentes, itens e datas conferem com o sistema). Pronta para conclusão.<span class="wa__meta">15:12</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cena 6: registro no portal e resposta -->
+        <div class="palco__cena" data-n="6">
+          <div class="ui passo" style="--i:0">
+            <div class="ui__barra"><svg aria-hidden="true"><use href="#simbolo"/></svg>Registro no Portal BB<span class="dir">OS 260311872</span></div>
+            <div class="ui__corpo">
+              <ol class="ui-passos">
+                <li class="ok passo" style="--i:1"><i><svg><use href="#i-ok"/></svg></i><div><b>Situação da OS lida antes de gravar</b><small>O estado anterior fica guardado.</small></div></li>
+                <li class="ok passo" style="--i:2"><i><svg><use href="#i-ok"/></svg></i><div><b>RAT 1 cadastrada</b><small>Técnico, datas e os itens da emissão.</small></div></li>
+                <li class="ok passo" style="--i:3"><i><svg><use href="#i-ok"/></svg></i><div><b>Folha assinada anexada</b><small>9481_260311872_RAT1.pdf, um PDF único mesmo com várias folhas.</small></div></li>
+                <li class="ok passo" style="--i:4"><i><svg><use href="#i-ok"/></svg></i><div><b>Valor relido no portal</b><small>R$ 1.320,40, igual à emissão. Se divergir, o sistema reabre e corrige.</small></div></li>
+                <li class="ok passo" style="--i:5"><i><svg><use href="#i-ok"/></svg></i><div><b>Resposta no grupo da agência</b><small>“RAT 1 da OS 260311872 arquivada, cadastrada e anexada no Portal. Pronta para conclusão.”</small></div></li>
+                <li class="vez passo" style="--i:6"><i><svg><use href="#i-espera"/></svg></i><div><b>Conclusão da OS</b><small>Decisão da equipe. O sistema para aqui.</small></div></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cena-legenda">
+        <div class="cena-legenda__corpo" aria-live="polite"></div>
+      </div>
+      <div class="cenas__extra">
+        <button type="button" class="alternar" data-correcao aria-pressed="false" hidden><span class="chave" aria-hidden="true"></span>Ver o caminho de correção</button>
+        <p class="ui__nota">*O retorno da RAT assinada usa uma sessão de WhatsApp vinculada a um aparelho da empresa. Se a sessão cair, a equipe é avisada e a RAT segue pelo cadastro na estação até a reconexão.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 4. DOCUMENTOS ============================ -->
+<section class="secao" id="documentos" data-docs aria-labelledby="docs-titulo">
+  <div class="recipiente">
+    <header class="cabeca revela">
+      <p class="sobrelinha">Documentos</p>
+      <h2 class="titulo-2" id="docs-titulo">Cada saída tem um destino. <em>Cada destino deixa registro.</em></h2>
+      <p class="lide">Três fluxos de documento, do sistema para a agência, os grupos, a equipe e o Portal BB. Logo abaixo, mude uma medida e veja planilha, relatório e PDF mudarem juntos.</p>
+    </header>
+
+    <div class="circulacao revela" aria-label="Para onde vai cada saída">
+      <div class="circulacao__legenda" aria-hidden="true"><span class="tag tag--portal">Portal BB</span><span class="tag">Agência</span><span class="tag">Grupos</span><span class="tag">Equipe</span></div>
+      <div class="trilhas">
+        <article class="trilha">
+          <header class="trilha__topo"><span class="trilha__n">01</span><div><h3>PDF da RAT</h3><p class="mono">RAT-260311872-9481_1.pdf · emitida na Estação de RAT</p></div></header>
+          <ol class="trilha__passos">
+            <li><div class="trilha__linha"><b>E-mail ao gerente e à caixa da agência</b><span class="tag">Agência</span></div><p>Pede a assinatura e o registro da conformidade no portal do banco.</p></li>
+            <li><div class="trilha__linha"><b>Comprovante nos grupos</b><span class="tag">Grupos</span></div><p>Só aparece depois que o servidor de e-mail aceita a mensagem.</p></li>
+            <li><div class="trilha__linha"><b>Livro da OS</b><span class="tag">Equipe</span></div><p>Itens e valores registrados por código, para a conferência da foto assinada.</p></li>
+          </ol>
+        </article>
+        <article class="trilha">
+          <header class="trilha__topo"><span class="trilha__n">02</span><div><h3>Foto da RAT assinada</h3><p>Folha assinada em campo, fotografada pelo técnico</p></div></header>
+          <ol class="trilha__passos">
+            <li><div class="trilha__linha"><b>Grupo da agência</b><span class="tag">Grupos</span></div><p>O técnico manda como já faz. O sistema reconhece a RAT e avisa que começou.</p></li>
+            <li><div class="trilha__linha"><b>Conferência</b><span class="tag tag--sistema">VALAR OPS</span></div><p>Sete checagens no servidor da operação, da folha inteira às assinaturas. Se uma falha, nada vai ao portal e o motivo vai ao grupo.</p></li>
+            <li><div class="trilha__linha"><b>Portal BB</b><span class="tag tag--portal">Portal BB</span></div><p>RAT cadastrada, folha anexada como PDF único e valor relido para provar o registro.</p></li>
+            <li><div class="trilha__linha"><b>Resposta no grupo</b><span class="tag">Grupos</span></div><p>“Pronta para conclusão.” Concluir a OS é decisão da equipe.</p></li>
+          </ol>
+        </article>
+        <article class="trilha">
+          <header class="trilha__topo"><span class="trilha__n">03</span><div><h3>Orçamento</h3><p>Uma base de medidas, itens e fotos</p></div></header>
+          <ol class="trilha__passos">
+            <li><div class="trilha__linha"><b>Planilha XLSX</b><span class="tag tag--portal">Portal BB</span></div><p class="mono">Orc.260309415_Portal.xlsx · modelo do banco, com a aba AGÊNCIAS</p></li>
+            <li><div class="trilha__linha"><b>Relatório em Word</b><span class="tag">Equipe</span></div><p>Relatório de vistoria, memória de cálculo e figuras. Fica com a equipe e não sobe ao portal.</p></li>
+            <li><div class="trilha__linha"><b>PDF do relatório</b><span class="tag tag--portal">Portal BB</span></div><p>Sai do Word e vai ao portal junto com a planilha.</p></li>
+            <li><div class="trilha__linha"><b>Dossiê numa sessão só</b><span class="tag tag--portal">Portal BB</span></div><p>Planilha, PDF e itens do orçamento, depois da revisão da equipe.</p></li>
+          </ol>
+        </article>
+      </div>
+      <p class="selo-demo circulacao__selo">Demonstração com dados fictícios</p>
+    </div>
+
+    <h3 class="subtitulo revela">Uma medida digitada uma vez vira <em>planilha, relatório e PDF.</em></h3>
+
+    <div class="docs revela">
+      <div class="orcamento">
+        <div class="janela__barra">
+          <span class="janela__produto"><svg aria-hidden="true"><use href="#simbolo"/></svg>CONFECÇÃO <span class="tela">· OS 260309415</span></span>
+          <span class="selo-demo">Demonstração com dados fictícios</span>
+        </div>
+        <div class="orcamento__corpo">
+          <div class="orcamento__ambiente"><h3>Tesouraria · forro</h3><span class="rotulo">Ag. Vale das Garças · RS</span></div>
+          <div class="medida">
+            <div class="medida__topo">
+              <label for="medida-forro" class="rotulo" style="color:var(--cobre-claro)">Área do forro</label>
+              <div class="medida__passo">
+                <button type="button" data-medida="menos" aria-label="Diminuir 1 metro quadrado">−</button>
+                <button type="button" data-medida="mais" aria-label="Aumentar 1 metro quadrado">+</button>
+              </div>
+            </div>
+            <p class="medida__valor"><span data-medida-valor>18,00</span><small>m²</small></p>
+            <input id="medida-forro" type="range" min="6" max="40" step="0.5" value="18">
+            <div class="medida__escala" aria-hidden="true"><span>6 m²</span><span>40 m²</span></div>
+          </div>
+          <div>
+            <ul class="itens itens__lista"></ul>
+            <div class="itens__total"><span class="rotulo">Total do orçamento</span><b data-total>R$ 2.906,80</b></div>
+            <p class="ui__nota" style="margin-top:10px">Códigos, preços e fatores fictícios. A regra é a da Confecção: um item nasce da medida ou de outro item, multiplicado por um fator.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="saidas">
+        <div class="saidas__abas" role="tablist" aria-label="Documentos gerados">
+          <button type="button" role="tab" id="aba-xlsx" aria-controls="painel-xlsx" aria-selected="true" data-aba="xlsx"><b>XLSX</b><span>Planilha do banco</span></button>
+          <button type="button" role="tab" id="aba-docx" aria-controls="painel-docx" aria-selected="false" tabindex="-1" data-aba="docx"><b>DOCX</b><span>Relatório editável</span></button>
+          <button type="button" role="tab" id="aba-pdf" aria-controls="painel-pdf" aria-selected="false" tabindex="-1" data-aba="pdf"><b>PDF</b><span>Relatório do portal</span></button>
+        </div>
+        <div class="saidas__painel">
+          <div role="tabpanel" id="painel-xlsx" aria-labelledby="aba-xlsx" tabindex="0">
+            <div class="saidas__mesa">
+              <div class="ampliavel">
+                <div class="xlsx" id="doc-xlsx" role="img" aria-label="Prévia da planilha de orçamento no modelo do banco, com os campos que mudam com a medida">
+                  <div class="xlsx__faixa">Orc.260309415_Portal.xlsx <span>· modelo do banco</span></div>
+                  <div class="xlsx__barra"><b>L9</b><span>=ROUND(E9*I9;2)</span></div>
+                  <div class="xlsx__cab">
+                    <span><i>G1</i>Contrato Carro Oficina</span><span><i>G3</i>Prefixo 9512</span><span><i>G5</i>ORÇAMENTO</span><span><i>C6</i>Chamado / relatório</span><span><i>L1</i>Total <b data-doc-total>2.906,80</b></span>
+                  </div>
+                  <table>
+                    <colgroup><col style="width:2.2em"><col style="width:6em"><col style="width:3.6em"><col><col style="width:4.4em"><col style="width:3em"><col style="width:6.2em"></colgroup>
+                    <tr><th></th><th>A</th><th>C</th><th>D</th><th>E</th><th>F</th><th>L</th></tr>
+                    <tr class="cab"><td class="l">8</td><td>Ambiente</td><td>Cód. item</td><td>Descrição item do contrato</td><td class="num">Qtde.</td><td>Und.</td><td class="num">Valor total item</td></tr>
+                    <tr><td class="l">9</td><td>Tesouraria</td><td>F.1</td><td>Forro de gesso acartonado</td><td class="num" data-doc-q="for">18,00</td><td>m²</td><td class="num" data-doc-v="for">1.341,00</td></tr>
+                    <tr><td class="l">10</td><td>Tesouraria</td><td>F.2</td><td>Retirada do forro existente</td><td class="num" data-doc-q="ret">18,00</td><td>m²</td><td class="num" data-doc-v="ret">266,40</td></tr>
+                    <tr><td class="l">11</td><td>Tesouraria</td><td>F.3</td><td>Remoção de entulho</td><td class="num" data-doc-q="ent">2,70</td><td>m³</td><td class="num" data-doc-v="ent">259,20</td></tr>
+                    <tr><td class="l">12</td><td>Tesouraria</td><td>F.4</td><td>Pintura do forro, duas demãos</td><td class="num" data-doc-q="pin">18,00</td><td>m²</td><td class="num" data-doc-v="pin">412,20</td></tr>
+                    <tr><td class="l">13</td><td>Tesouraria</td><td>F.5</td><td>Emassamento do forro</td><td class="num" data-doc-q="ema">18,00</td><td>m²</td><td class="num" data-doc-v="ema">352,80</td></tr>
+                    <tr><td class="l">14</td><td>Geral</td><td>1.1 · 1.2</td><td>Chamado e deslocamento</td><td class="num">fixos</td><td></td><td class="num">275,20</td></tr>
+                  </table>
+                  <div class="abas"><span class="sel">Orçamento</span><span>AGÊNCIAS</span></div>
+                </div>
+                <button type="button" class="ampliar-botao" data-ampliar-alvo="doc-xlsx" data-ampliar-titulo="Planilha de orçamento no modelo do banco"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6V2.5H6M13.5 6V2.5H10M2.5 10v3.5H6M13.5 10v3.5H10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Ampliar</button>
+              </div>
+              <span class="marca-previa">Prévia · dados fictícios</span>
+            </div>
+            <div class="saidas__destino"><svg aria-hidden="true"><use href="#i-portal"/></svg><div><b>Vai ao Portal BB</b><small>Anexada à OS, com os itens cadastrados na aba Orçamento.</small></div></div>
+          </div>
+          <div role="tabpanel" id="painel-docx" aria-labelledby="aba-docx" tabindex="0" hidden>
+            <div class="saidas__mesa">
+              <div class="ampliavel">
+                <div class="doc doc--docx" id="doc-docx" role="img" aria-label="Prévia do relatório fotográfico editável em Word">
+                  <div class="doc__faixa">R.F.260309415_Tesouraria.docx <span>· editável</span></div>
+                  <div class="doc__pagina">
+                    <div class="doc__cab"><span class="logo">Logo</span><div><h4>Relatório de vistoria</h4><p class="sub">Diagnóstico e orçamento</p></div><span class="logo">Logo</span></div>
+                    <p class="doc__linha">OS 260309415 · Prefixo 9512 · Ag. Vale das Garças</p>
+                    <div class="bloco"><b>Descrição da vistoria</b><p>Forro de gesso com infiltração junto às luminárias e placas soltas na área da tesouraria.</p></div>
+                    <div class="bloco"><b>Relatório fotográfico</b>
+                      <p class="doc__divisoria">TESOURARIA</p>
+                      <p class="doc__servico">Substituição do forro</p>
+                      <p class="doc__memoria">Memória de cálculo: D.4,00m x <span data-doc-comprimento>4,50</span>m = <span data-doc-medida>18,00</span> m²</p>
+                      <ul class="doc__itens">
+                        <li>F.1 · Forro de gesso acartonado · <span data-doc-q="for">18,00</span> m²</li>
+                        <li>F.3 · Remoção de entulho · <span data-doc-q="ent">2,70</span> m³</li>
+                        <li>F.5 · Emassamento do forro · <span data-doc-q="ema">18,00</span> m²</li>
+                      </ul>
+                      <div class="fotos">
+                        <figure class="foto foto--dano"><span class="foto__img"></span><figcaption>Figura 01 · infiltração junto à luminária</figcaption></figure>
+                        <figure class="foto foto--dano"><span class="foto__img"></span><figcaption>Figura 02 · placas soltas</figcaption></figure>
+                      </div>
+                    </div>
+                    <p class="doc__rodape"><span>Prestadora Demo</span><span>Página 1 de 3</span></p>
+                  </div>
+                </div>
+                <button type="button" class="ampliar-botao" data-ampliar-alvo="doc-docx" data-ampliar-titulo="Relatório fotográfico em Word"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6V2.5H6M13.5 6V2.5H10M2.5 10v3.5H6M13.5 10v3.5H10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Ampliar</button>
+              </div>
+              <span class="marca-previa">Prévia · dados fictícios</span>
+            </div>
+            <div class="saidas__destino"><svg aria-hidden="true"><use href="#i-pasta"/></svg><div><b>Fica com a equipe</b><small>O Word é a fonte editável e não sobe ao portal.</small></div></div>
+          </div>
+          <div role="tabpanel" id="painel-pdf" aria-labelledby="aba-pdf" tabindex="0" hidden>
+            <div class="saidas__mesa">
+              <div class="ampliavel">
+                <div data-clonar-doc="doc-docx" data-id-copia="doc-pdf" data-faixa="Relatório fotográfico.pdf &lt;span&gt;· vai ao portal&lt;/span&gt;" style="display:contents"></div>
+                <button type="button" class="ampliar-botao" data-ampliar-alvo="doc-pdf" data-ampliar-titulo="Relatório em PDF que vai ao portal"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6V2.5H6M13.5 6V2.5H10M2.5 10v3.5H6M13.5 10v3.5H10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Ampliar</button>
+              </div>
+              <span class="marca-previa">Prévia · dados fictícios</span>
+            </div>
+            <div class="saidas__destino"><svg aria-hidden="true"><use href="#i-portal"/></svg><div><b>Vai ao Portal BB</b><small>Convertido do Word e anexado junto com a planilha, na mesma sessão.</small></div></div>
+          </div>
+        </div>
+        <ol class="fluxo-envio" aria-label="Do documento ao portal">
+          <li><b>01 · Sistema</b>Gera os três da mesma base</li>
+          <li class="humano"><b>02 · Equipe</b>Revisa itens, medidas e fotos</li>
+          <li><b>03 · Sistema</b>Envia o dossiê numa sessão e relê</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="ia revela" aria-label="Onde a inteligência artificial trabalha">
+      <article class="ia__item"><p class="rotulo">IA que lê</p><h3>A foto da RAT, no servidor da operação</h3><p>Leitura óptica e classificação de imagem separam RAT, foto, croqui e print, leem o número da OS e conferem itens, datas e assinaturas contra a emissão.</p></article>
+      <article class="ia__item"><p class="rotulo">IA que redige</p><h3>Rascunhos que a equipe aprova</h3><p>Parecer técnico do orçamento e justificativa de devolução saem prontos para revisão. Um validador barra número que não estava no contexto antes de o texto seguir.</p></article>
+      <article class="ia__item limite"><p class="rotulo">O que a IA não decide</p><h3>Conformidade, conclusão e pagamento</h3><p>Conformidade é do banco. Orçamento, encaminhamentos e conclusão são da equipe. A IA trabalha antes dessas decisões, não no lugar delas.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 5. MEDIÇÃO E PAGAMENTO ============================ -->
+<section class="secao" id="medicao" data-explorar aria-labelledby="medicao-titulo">
+  <div class="recipiente">
+    <header class="cabeca revela">
+      <p class="sobrelinha">Medição e pagamento</p>
+      <h2 class="titulo-2" id="medicao-titulo">Saiba o que sustenta a medição <em>e o que segura o pagamento.</em></h2>
+      <p class="lide">A RAT registrada e relida sustenta o valor da OS no portal. A conformidade do banco põe a OS no ciclo de 21 a 20. E o banco paga por chamado: se uma OS do chamado ainda não teve conformidade, as outras esperam. O VALAR OPS acompanha isso todo dia útil.</p>
+    </header>
+
+    <div class="medicao__grade" id="apuracao">
+      <div class="wa wa--medicao revela" role="img" aria-label="Mensagem diária do VALAR OPS no grupo de medição com o saldo do ciclo, o valor travado por chamado e as OS pendentes de conformidade">
+        <div class="wa__barra">
+          <span class="wa__avatar"><svg aria-hidden="true"><use href="#i-grupo"/></svg></span>
+          <span class="wa__grupo"><b>Medição RS</b><span>Diretoria, Financeiro, Escritório, VALAR OPS</span></span>
+          <span class="wa__canal">WHATSAPP</span>
+        </div>
+        <div class="wa__conversa" style="min-height:0">
+          <span class="wa__dia">HOJE</span>
+          <div class="wa__linha wa__linha--larga"><span class="wa__av" aria-hidden="true"><svg><use href="#simbolo"/></svg></span><div class="wa__msg wa__msg--in wa__msg--sistema" style="opacity:1;transform:none">
+            <span class="wa__autor">VALAR OPS</span>
+            <span class="wa__relatorio"><b>FECHAMENTO DIÁRIO · MEDIÇÃO RS</b><br>Ciclo 21/09 a 20/10 · portal lido às 18:04<br><br>OS com conformidade (novas): 3<br><b>SALDO ACUMULADO DO CICLO: R$ 126.418,90</b><br><span class="alerta">Conformadas que o CHAMADO segura: R$ 7.364,20 em 2 OS · cobrar as irmãs</span><br>OS PENDENTES DE CONFORMIDADE: 9 · R$ 48.730,10</span>
+            <span class="wa__arquivo"><i>PDF</i><span><b>Medicao_RS_detalhe.pdf</b><small>3 páginas</small></span></span>
+            <span class="wa__meta">18:06</span>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="saldo revela" data-saldo>
+        <div class="janela__barra"><span class="janela__produto"><svg aria-hidden="true"><use href="#simbolo"/></svg>CICLO 21/09 A 20/10</span><span class="selo-demo">portal lido às 18:04</span></div>
+        <div class="saldo__corpo">
+          <span class="rotulo">Saldo acumulado do ciclo</span>
+          <p class="saldo__valor" aria-live="polite">R$ <span data-saldo-valor="s">126.418,90</span></p>
+          <div class="saldo__barra" aria-hidden="true"><span class="s" data-barra="s"></span><span class="t" data-barra="t"></span><span class="p" data-barra="p"></span></div>
+          <dl class="saldo__legenda">
+            <div><dt><i class="s"></i>No saldo do ciclo</dt><dd>R$ <span data-saldo-valor="s2">126.418,90</span></dd><p><span data-saldo-qtd="s">31</span> OS com conformidade do banco de 21/09 a 20/10.</p></div>
+            <div><dt><i class="t"></i>Travado por chamado</dt><dd>R$ <span data-saldo-valor="t">7.364,20</span></dd><p><span data-saldo-qtd="t">2</span> OS conformadas, esperando a OS irmã do mesmo chamado.</p></div>
+            <div><dt><i class="p"></i>Pendentes de conformidade</dt><dd>R$ <span data-saldo-valor="p">48.730,10</span></dd><p><span data-saldo-qtd="p">9</span> OS concluídas, aguardando o banco.</p></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="parado revela" id="saldo">
+      <div class="parado__intro">
+        <span class="rotulo cobre">Por que está parado</span>
+        <p>O banco paga por chamado. A OS conformada espera enquanto a OS irmã, no mesmo chamado, não tem conformidade.</p>
+      </div>
+      <div class="parado__acao">
+        <div class="chamado">
+          <div class="chamado__topo"><span>CHAMADO C041822731</span><span>2 OS · Ag. Serra Azul</span></div>
+          <div class="chamado__os"><b>OS 260251309</b><span class="mono">R$ 4.186,30</span><small>Piso da área de atendimento · conformada em 01/10</small><em class="estado estado--ok">Conformada</em></div>
+          <div class="chamado__os"><b>OS 260251377</b><span class="mono">R$ 1.402,60</span><small>Porta de vidro do autoatendimento</small><em class="estado estado--falta" data-irma>Sem conformidade</em></div>
+        </div>
+        <p class="parado__texto" data-parado-texto>Enquanto a OS 260251377 não tiver conformidade, os R$ 4.186,30 da OS 260251309 ficam fora do saldo do ciclo.</p>
+        <button type="button" class="botao botao--linha parado__botao" data-simular aria-pressed="false">Simular a conformidade da OS irmã</button>
+        <p class="ui__nota">No exemplo, o botão altera só esta demonstração. Na operação, a conformidade é do banco: o sistema mostra o valor retido e qual OS segura o chamado, e a equipe cobra.</p>
+        <div class="parado__tambem"><span class="rotulo">Também travada</span><span><span class="mono">OS 260279034</span> · Ag. Lagoa Funda · R$ 3.177,90 · chamado C041866019</span></div>
+      </div>
+    </div>
+
+    <div class="ate-pagamento revela">
+        <span class="rotulo">Até o pagamento</span>
+        <ol>
+          <li><b>Todo dia útil</b><p>Fechamento diário no grupo de medição, com o PDF de detalhe e a hora da leitura do portal.</p></li>
+          <li><b>Dia 21</b><p>Sai o fechamento extraoficial do ciclo.</p></li>
+          <li><b>Planilha do banco</b><p>Anexada pela equipe e conferida chave a chave.</p><div class="vereditos"><span>confere</span><span>confere pelo chamado</span><span>valor divergente</span><span>só no banco</span><span>só no sistema</span></div></li>
+          <li><b>Pagamento</b><p>Previsto pela capa da planilha do banco. Realizado quando o portal marca a OS como paga.</p></li>
+        </ol>
+        <p class="apuracao__nota">Valores fictícios. O saldo do ciclo é extraoficial: o número final é o da planilha do banco.</p>
+    </div>
+
+    <div class="explorar revela">
+        <div class="janela__barra">
+          <span class="janela__produto"><svg aria-hidden="true"><use href="#simbolo"/></svg>VALAR OPS <span class="tela">· MESA DE OS</span></span>
+          <span class="selo-demo">Demonstração com dados fictícios</span>
+        </div>
+      <div class="filtros" role="group" aria-label="Filtrar OS">
+        <button type="button" data-filtro="atencao" aria-pressed="true"><span class="t">Atenção</span><span class="n">4</span></button>
+        <button type="button" class="trava" data-filtro="chamado" aria-pressed="false"><span class="t">Travado por chamado</span><span class="n">2</span></button>
+        <button type="button" data-filtro="rat" aria-pressed="false"><span class="t">RAT devolvida</span><span class="n">1</span></button>
+        <button type="button" data-filtro="medicao" aria-pressed="false"><span class="t">Na medição</span><span class="n">4</span></button>
+        <button type="button" data-filtro="todas" aria-pressed="false"><span class="t">Todas</span><span class="n">8</span></button>
+      </div>
+      <div class="explorar__estado"><span data-explorar-estado aria-live="polite"></span><span>Toque numa OS para ver o detalhe</span></div>
+      <ul class="explorar__lista"></ul>
+      <div class="explorar__mais"><button type="button" class="botao botao--fantasma" data-explorar-mais hidden>Ver mais</button></div>
+      <noscript><p class="explorar__vazio">A mesa explorável precisa de JavaScript. As OS do exemplo: duas travadas por chamado, a OS irmã que aguarda conformidade, uma com RAT devolvida, uma que reitera amanhã, uma no ciclo, uma com relatório pendente e uma com orçamento no portal.</p></noscript>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 6. GANHO ============================ -->
+<section class="secao" id="ganho" data-ganho aria-labelledby="ganho-titulo">
+  <div class="recipiente">
+    <header class="cabeca revela">
+      <p class="sobrelinha">Para quem opera e para quem decide</p>
+      <h2 class="titulo-2" id="ganho-titulo">O gerente ganha tempo. <em>O dono enxerga o que sustenta o recebimento.</em></h2>
+      <p class="lide">Cada ganho abaixo aponta para a demonstração em que ele aparece nesta página.</p>
+    </header>
+    <div class="segmento revela" role="tablist" aria-label="Perfil">
+      <button type="button" role="tab" id="aba-gerente" aria-selected="true" aria-controls="ganhos-caixa" data-perfil="gerente">Gerente do contrato</button>
+      <button type="button" role="tab" id="aba-dono" aria-selected="false" tabindex="-1" aria-controls="ganhos-caixa" data-perfil="dono">Dono da prestadora</button>
+    </div>
+    <div class="ganhos revela" id="ganhos-caixa" role="tabpanel" aria-labelledby="aba-gerente"></div>
+
+    <div class="prova revela" data-prova>
+      <div class="prova__item">
+        <p class="prova__num" data-alvo="1820">1.820</p>
+        <p class="prova__nome">RATs emitidas na operação</p>
+        <p class="prova__fonte"><b>Período</b>Março de 2025 a junho de 2026.</p>
+      </div>
+      <div class="prova__item">
+        <p class="prova__num" data-alvo="2829">2.829</p>
+        <p class="prova__nome">OS acompanhadas no espelho do portal</p>
+        <p class="prova__fonte"><b>Posição</b>05/10/2026, RS e SC, inclui encerradas.</p>
+      </div>
+      <div class="prova__item">
+        <p class="prova__num" data-alvo="225">225</p>
+        <p class="prova__nome">dependências em atendimento</p>
+        <p class="prova__fonte"><b>Posição</b>31/08/2026, cadastro ativo do contrato, RS e SC.</p>
+      </div>
+    </div>
+    <details class="prova-nota revela">
+      <summary>De onde vêm esses números</summary>
+      <p>Operação de referência: uma prestadora de Carro Oficina do Banco do Brasil no RS e em SC, onde o VALAR OPS foi construído e roda hoje. As RATs contam todas as emitidas na operação no período, inclusive antes de o sistema assumir a emissão. São volumes, não estimativas de economia nem resultados garantidos para outro contrato.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============================ 7. IMPLANTAÇÃO ============================ -->
+<section class="secao" id="implantacao" aria-labelledby="impl-titulo">
+  <div class="recipiente">
+    <header class="cabeca revela">
+      <p class="sobrelinha">Entrada acompanhada</p>
+      <h2 class="titulo-2" id="impl-titulo">Começamos pelo fluxo que <em>mais pesa na sua rotina.</em></h2>
+    </header>
+    <ol class="passos revela">
+      <li class="passo-impl"><span class="passo-impl__n">01</span><div><h3>Demonstração de um fluxo do seu contrato</h3><p>A VALAR mostra no sistema o fluxo que você escolher, com dados de demonstração, e o que continua humano.</p><p class="entrega"><b>Entrega</b>O fluxo escolhido funcionando na tela.</p></div></li>
+      <li class="passo-impl"><span class="passo-impl__n">02</span><div><h3>Escopo e configurações</h3><p>Bases, dependências, tabela do contrato, grupos e acessos são definidos com a sua equipe.</p><p class="entrega"><b>Entrega</b>Escopo e configurações combinados por escrito.</p></div></li>
+      <li class="passo-impl"><span class="passo-impl__n">03</span><div><h3>Implantação acompanhada</h3><p>O primeiro fluxo entra em operação com a equipe orientada e o caminho das exceções combinado.</p><p class="entrega"><b>Entrega</b>O primeiro fluxo aceito pela sua equipe.</p></div></li>
+    </ol>
+    <p class="contrato-nota revela">A assinatura sustenta as rotinas contratadas. <span>Personalização tem avaliação própria.</span></p>
+
+    <div class="perguntas">
+      <h3 class="revela">Perguntas frequentes</h3>
+      <div class="revela">
+        <details class="pergunta">
+          <summary>Funciona com o meu contrato?</summary>
+          <div class="pergunta__resposta"><p>O VALAR OPS nasceu dentro de uma operação de Carro Oficina do Banco do Brasil. Tabela contratual, dependências, bases, grupos e régua de prazos são configurados para o seu contrato na implantação.</p></div>
+        </details>
+        <details class="pergunta">
+          <summary>O sistema decide sozinho?</summary>
+          <div class="pergunta__resposta"><p>Não. Coleta, avisos, conferência e registro da RAT assinada rodam sozinhos, porque a regra é clara. Itens, quantidades, orçamento, encaminhamentos e a conclusão da OS passam pela equipe.</p><p>As gravações no portal terminam com uma releitura que confirma o efeito antes de mudar o estado da OS.</p></div>
+        </details>
+        <details class="pergunta">
+          <summary>Como entram o WhatsApp e o Portal BB?</summary>
+          <div class="pergunta__resposta"><p>O técnico continua mandando a foto da RAT no grupo da agência. O VALAR OPS reconhece a foto, confere e registra no Portal BB com o acesso da sua empresa, e responde no mesmo grupo.</p><p class="nota-wa">*O retorno da RAT assinada usa uma sessão de WhatsApp vinculada a um aparelho da empresa. Se a sessão cair, a equipe é avisada e a RAT segue pelo cadastro na estação até a reconexão.</p></div>
+        </details>
+        <details class="pergunta">
+          <summary>Quanto tempo leva a implantação?</summary>
+          <div class="pergunta__resposta"><p>Depende do fluxo escolhido e das configurações do contrato. O prazo fica definido no escopo, antes de começar.</p></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 8. CONVERSÃO ============================ -->
+<section class="secao convite" id="demonstracao" aria-labelledby="convite-titulo">
+  <svg class="convite__simbolo" viewBox="0 0 300 300" aria-hidden="true" focusable="false">
+    <polygon points="150,30 46.08,90 46.08,210 150,270 253.92,210 253.92,90" fill="none" stroke="#F5F5F3" stroke-width="1.2"/>
+    <polygon points="150,67.56 78.6,108.78 78.6,191.22 150,232.44 221.4,191.22 221.4,108.78" fill="none" stroke="#F5F5F3" stroke-width="0.9" opacity=".6"/>
+    <g stroke="#F5F5F3" stroke-width="0.5" opacity=".35"><line x1="150" y1="135" x2="150" y2="30"/><line x1="137.01" y1="142.5" x2="46.08" y2="90"/><line x1="137.01" y1="157.5" x2="46.08" y2="210"/><line x1="150" y1="165" x2="150" y2="270"/><line x1="162.99" y1="157.5" x2="253.92" y2="210"/><line x1="162.99" y1="142.5" x2="253.92" y2="90"/></g>
+    <polygon points="150,102 108.43,126 108.43,174 150,198 191.57,174 191.57,126" fill="none" stroke="#B87333" stroke-width="0.8" opacity=".5"/>
+    <polygon points="150,120 124.02,135 124.02,165 150,180 175.98,165 175.98,135" fill="none" stroke="#B87333" stroke-width="0.9" opacity=".8"/>
+    <circle cx="150" cy="150" r="7.5" fill="#B87333"/>
+  </svg>
+  <div class="recipiente" style="position:relative">
+    <p class="sobrelinha revela">VALAR Inteligência</p>
+    <h2 class="convite__titulo revela" id="convite-titulo">Veja como o VALAR OPS se aplica ao seu contrato.</h2>
+    <p class="convite__texto revela">Escolha o fluxo que mais toma tempo da sua equipe hoje. A VALAR apresenta esse fluxo no sistema, com dados de demonstração, e mostra o que muda na rotina do escritório e do campo.</p>
+    <div class="convite__escolhas revela" aria-label="Fluxos para a demonstração"><span>RAT e WhatsApp</span><span>Orçamento e documentos</span><span>Mesa de OS e medição</span></div>
+    <div class="convite__acoes revela">
+      <a class="botao botao--cobre" href="https://valar.tec.br/contato/?origem=valarops-carro-oficina" data-evento="cta_final">Solicitar demonstração <span class="seta" aria-hidden="true">→</span></a>
+      <a class="botao botao--linha" href="mailto:contato@valar.tec.br?subject=Demonstra%C3%A7%C3%A3o%20VALAR%20OPS%20%C2%B7%20Carro%20Oficina" data-evento="cta_email">Escrever para contato@valar.tec.br</a>
+      <p class="convite__ajuda">O primeiro botão abre o formulário de contato da VALAR em valar.tec.br. O segundo abre o seu aplicativo de e-mail.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="recipiente">
+    <div class="rodape__grade">
+      <div class="rodape__marca">
+        <a class="marca marca--grande" href="https://valar.tec.br/" aria-label="VALAR Inteligência, site institucional">
+          <svg class="marca__simbolo" aria-hidden="true"><use href="#simbolo"/></svg>
+          <span class="marca__filete" aria-hidden="true"></span>
+          <span class="marca__texto" aria-hidden="true"><span class="marca__nome">VALAR</span><span class="marca__regua"></span><span class="marca__sub">INTELIGÊNCIA</span></span>
+        </a>
+        <p>Automação, integração de sistemas e IA aplicada à operação. O VALAR OPS é a plataforma operacional da VALAR, aqui na sua aplicação para contratos Carro Oficina.</p>
+      </div>
+      <div>
+        <h4>VALAR</h4>
+        <ul>
+          <li><a href="https://valar.tec.br/">valar.tec.br</a></li>
+          <li><a href="https://valar.tec.br/valarops/">Plataforma VALAR OPS</a></li>
+          <li><a href="https://valar.tec.br/sobre/">Sobre a VALAR</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://valar.tec.br/contato/?origem=valarops-carro-oficina">Formulário de contato</a></li>
+          <li><a href="mailto:contato@valar.tec.br">contato@valar.tec.br</a></li>
+          <li><a href="https://valar.tec.br/privacidade/">Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape__base">
+      <span>© 2026 VALAR Inteligência</span>
+      <p>As demonstrações desta página usam dados fictícios. Banco do Brasil e WhatsApp são marcas de seus titulares. A menção situa o contrato e o canal atendidos e não indica parceria.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="cta-fixo" aria-hidden="true">
+  <p><b>VALAR OPS · Carro Oficina</b>Demonstração no seu contrato</p>
+  <a class="botao botao--cobre" href="https://valar.tec.br/contato/?origem=valarops-carro-oficina" data-evento="cta_fixo" tabindex="-1">Solicitar demonstração</a>
+</div>
+
+<!-- Detalhe da OS (diálogo) -->
+<div class="folha" id="folha-os" aria-hidden="true">
+  <div class="folha__fundo" data-fechar></div>
+  <div class="folha__painel" role="dialog" aria-modal="true" aria-labelledby="folha-titulo" aria-describedby="folha-sub">
+    <div class="folha__alca" aria-hidden="true"></div>
+    <div class="folha__topo">
+      <div><h3 id="folha-titulo">OS</h3><p id="folha-sub"></p></div>
+      <button type="button" class="folha__fechar" data-fechar aria-label="Fechar o detalhe da OS"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8m0-8l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="folha__corpo"></div>
+  </div>
+</div>
+
+<!-- Ampliação de documento (diálogo) -->
+<div class="folha folha--ampliar" id="folha-ampliar" aria-hidden="true">
+  <div class="folha__fundo" data-fechar></div>
+  <div class="folha__painel" role="dialog" aria-modal="true" aria-labelledby="ampliar-titulo">
+    <div class="folha__alca" aria-hidden="true"></div>
+    <div class="folha__topo">
+      <div><h3 id="ampliar-titulo">Documento ampliado</h3><p>Demonstração com dados fictícios</p></div>
+      <button type="button" class="folha__fechar" data-fechar aria-label="Fechar a ampliação"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8m0-8l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    </div>
+    <p class="ampliar__dica">Arraste para percorrer o documento.</p>
+    <div class="ampliar__palco"></div>
+  </div>
+</div>
+</body>
+</html>
